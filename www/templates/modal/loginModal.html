@@ -1,0 +1,57 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="closeLogin()"></button>
+    <h4>Login/Register</h4>
+  </ion-header-bar>
+  <ion-content>
+    <ion-tabs>
+      <ion-tab title="Login">
+        <form class="" ng-submit="login()">
+          <div class="list list-inset">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Phone Number</span>
+              <input type="text" placeholder="Registered Phone Number" ng-model="user.phone" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Password</span>
+              <input type="password" placeholder="Password" ng-model="user.pwd" required>
+            </label>
+            <label class="item">
+              <button class="button button-block button-positive" type="submit">Login</button>
+            </label>
+          </div>
+        </form>
+      </ion-tab>
+      <ion-tab title="Register">
+        <!-- <ion-nav-view name="tab-register"></ion-nav-view> -->
+        <form class="" ng-submit="register()">
+          <div class="list list-inset">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Name</span>
+              <input type="text" placeholder="Enter Your Name" ng-model="reg.name" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Email</span>
+              <input type="text" placeholder="Enter Your Email" ng-model="reg.email" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Phone Number</span>
+              <input type="text" placeholder="Enter Phone Number" ng-model="reg.phone" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Vehicle Number</span>
+              <input type="text" placeholder="Vehicle Registration Number" ng-model="reg.number" required>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Password</span>
+              <input type="password" placeholder="Give Password" ng-model="reg.pwd" required>
+            </label>
+            <label class="item">
+              <button class="button button-block button-positive" type="submit">Create Account</button>
+            </label>
+          </div>
+        </form>
+      </ion-tab>
+    </ion-tabs>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,22 @@
+<!-- <script id="placesSearchModal.html" type="text/ng-template"> -->
+  <ion-modal-view>
+    <ion-header-bar>
+        <button class="button button-icon icon ion-arrow-left-c" ng-click="closeModal()"></button>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" placeholder="Type Location" ng-model="search.text" ng-change="getLocationList()" focused>
+          </label>
+        </div>
+      </div>
+      <ion-list>
+        <ion-item ng-repeat="item in items" ng-click="selectLocation($index)">
+          <i class="icon ion-location"></i>&nbsp;&nbsp;
+          {{item.description}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-modal-view>
+<!-- </script> -->

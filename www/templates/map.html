@@ -1,0 +1,20 @@
+<ion-view view-title="Epark West Bengal">
+  <ion-content>
+    <!-- <ion-google-place placeholder="Your address" ng-model="location" search-placeholder="Enter an address" current-location="true"/> -->
+      <div id="parkSearch">
+          <!-- <input type="text" placeholder="Search area" id="searchTextField"/> -->
+          <!-- <button class="button button-block button-light" style="text-align: left;" ng-click="openModal()">
+            {{searchButtonText}}
+          </button> -->
+          <div class="list list-inset">
+            <div class="item"  ng-click="openModal()">
+              {{currentLocation.description}}
+            </div>
+          </div>
+      </div>
+      <div id="map" data-tap-disabled="false"></div>
+      <div id="info">
+        <strong>Tap a parking icon for details</strong>
+      </div>
+  </ion-content>
+</ion-view>

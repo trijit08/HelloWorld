@@ -1,6 +1,6 @@
 var app = angular.module('starter');
 
-app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializerJQLike){
+app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializerJQLike, StorageService, UserService){
 
   $scope.reg = {
     name: 'Arup Sengupta',
@@ -10,7 +10,7 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializ
     pwd: 'asdfghjkl'
   };
 
-  $scope.user = {};
+  $scope.user = UserService.getUser();
 
   $ionicModal.fromTemplateUrl('/templates/modal/loginModal.html',{
     scope: $scope,
@@ -28,12 +28,7 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializ
   };
 
   $scope.register = function(){
-    var url = "http://localhost:8080/users";
-    $http.post(url, $httpParamSerializerJQLike($scope.reg), {
-      headers:{
-        'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
-      }
-    }).then(function(response){
+    UserService.doRegister($scope.reg).then(function(response){
       if(response.status === 200){
         $scope.user = response.data;
         $scope.loginModal.hide();
@@ -46,14 +41,11 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializ
   };
 
   $scope.login = function(){
-    var url = "http://localhost:8080/users/login";
-    $http.post(url,  $httpParamSerializerJQLike($scope.user), {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
-    }).then(function(response){
+    UserService.doLogin().then(function(response){
       if(response.status === 200){
         $scope.user = response.data;
+        $scope.user.isLoggedIn = true;
+        StorageService.add($scope.user);
         $scope.loginModal.hide();
       }else{
         alert(response.data);

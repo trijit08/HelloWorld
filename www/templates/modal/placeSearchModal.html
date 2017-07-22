@@ -2,12 +2,13 @@
   <ion-modal-view>
     <ion-header-bar>
         <button class="button button-icon icon ion-arrow-left-c" ng-click="closeModal()"></button>
+		<h3 class="title">Find your destination</h3>
     </ion-header-bar>
     <ion-content>
       <div class="list">
         <div class="item item-input-inset">
           <label class="item-input-wrapper">
-            <input type="text" placeholder="Type Location" ng-model="search.text" ng-change="getLocationList()" focused>
+            <input type="text" placeholder="Just type your location here" ng-model="search.text" ng-change="getLocationList()" focused>
           </label>
         </div>
       </div>

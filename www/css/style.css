@@ -1,4 +1,16 @@
 /* Empty. Add your own CSS if you like */
+
+/* ***************** CSS CLASS FOR THE MENU IMAGE START ********************** */
+.image_Profile{
+    height: 24vw; 
+    width: 24vw; 
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 5px gray;
+    display: inline-block;
+}
+/* ***************** CSS CLASS FOR THE MENU IMAGE END ************************ */
+
 .scroll{
   height: 100%;
 }

@@ -6,27 +6,22 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <div class="list card">
-      <div class="item item-divider">
-        {{selectedParking.parking_slot - selectedParking.booked_slot}} slots available
-      </div>
-      <div class="item">
-        <h2>Opening Hours</h2>
-        <p>
-          {{selectedParking.opening_hours.start <= 12 ? selectedParking.opening_hours.start + 'am' : (selectedParking.opening_hours.start - 12) + 'pm'}} - {{selectedParking.opening_hours.end <= 12 ? selectedParking.opening_hours.end + 'am' : (selectedParking.opening_hours.end-12) + 'pm'}}
-          <span class="item-note">&#8377;&nbsp;{{selectedParking.hourly_price}}/hour</span>
-        </p>
-      </div>
-      <div class="item item-divider">
-        <i class="icon ion-android-car" style="font-size: 20px;"></i>&nbsp;
-        <span>{{selectedParking.distance}}, {{selectedParking.duration}}</span>
-      </div>
-    </div>
+		<div class="list card">
+		  <div class="item item-divider">
+			<span style="font-size : 6vw; color : green;">{{selectedParking.parking_slot - selectedParking.booked_slot}}</span> out of <span style="font-size : 6vw; color : #FF0000;">24 </span>slots available
+		  </div>
+		  <div class="item">
+				<div><img src="img/clock.png" style="width :5vw; margin-right : 2vw;"/><span>Operation Hours : </span><span style="font-weight : 500; color : brown; font-size : 5vw;">{{selectedParking.opening_hours.start <= 12 ? selectedParking.opening_hours.start + 'am' : (selectedParking.opening_hours.start - 12) + 'pm'}} - {{selectedParking.opening_hours.end <= 12 ? selectedParking.opening_hours.end + 'am' : (selectedParking.opening_hours.end-12) + 'pm'}}</span></div>
+				<div><img src="img/location.png" style="width :5vw; margin-right : 2vw;"/><span>Distance from your location : </span><span style="font-weight : 500; font-size : 5vw;">{{selectedParking.distance}}</span></div>
+				<div style="margin-bottom : 2vw;"><img src="img/map.png" style="width :5vw; margin-right : 2vw;"/><span>Time to reach : </span><span style="font-weight : 500; font-size : 5vw;">{{selectedParking.duration}}</span></div>
+				<div><span class="item-note"><span>Charge : </span><span style="font-size : 6vw; color : green;">&#8377;&nbsp;{{selectedParking.hourly_price}}/hour</span></span></div>
+		  </div>
+		</div>
+
+	    <div style="text-align : center;">
+		   <a href="#/menu/slotBooking" class="button button-medium button-balanced" style="margin-right : 2vw;"><i class="icon ion-android-car" style="margin-right : 5px;"></i>Book Now</a>
+		   <a href="#/menu/slotBooking" class="button button-medium button-assertive"><i class="icon ion-android-alarm-clock" style="margin-right : 5px;"></i>Book Later</a>
+		</div>
   </ion-content>
-  <ion-footer-bar>
-    <div class="button-bar">
-      <a href="#" class="button button-stable">Book Later</a>
-      <a href="#" class="button button-positive">Book Now</a>
-    </div>
-  </ion-footer-bar>
+  
 </ion-bottom-sheet-view>

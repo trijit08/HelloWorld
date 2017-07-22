@@ -1,20 +1,27 @@
-<ion-view view-title="Epark West Bengal">
+<ion-view view-title="Welcome to ePark">
   <ion-content>
-    <!-- <ion-google-place placeholder="Your address" ng-model="location" search-placeholder="Enter an address" current-location="true"/> -->
       <div id="parkSearch">
-          <!-- <input type="text" placeholder="Search area" id="searchTextField"/> -->
-          <!-- <button class="button button-block button-light" style="text-align: left;" ng-click="openModal()">
-            {{searchButtonText}}
-          </button> -->
-          <div class="list list-inset">
-            <div class="item"  ng-click="openModal()">
-              {{currentLocation.description}}
-            </div>
+	      <div class="list list-inset" style="background-color : transparent ; margin : 0px 10px;">
+		     <div class="card">
+				  <div class="item item-text-wrap">
+				    <div style="text-align : center; color : green; margin-bottom : 4px;"><i class="icon ion-record" style="color : #32CD32; margin-right : 8px;"></i>Your present location</div>
+					<div style="text-align : center;">{{homeLocationDisplay}}</div>
+				  </div>
+			 </div>
+		  </div>
+	  
+          <div class="list list-inset" style="background-color : transparent ; margin : -28px 10px;">
+			<div class="card" ng-click="openModal()">
+				  <div class="item item-text-wrap">
+				    <div style="text-align : center; color : red; margin-bottom : 4px;"><i class="icon ion-record" style="color : #E50000; margin-right : 8px;"></i>Type your destination here</div>
+					<div style="text-align : center;">{{currentLocation.description}}</div>
+				  </div>
+			 </div>
           </div>
       </div>
       <div id="map" data-tap-disabled="false"></div>
       <div id="info">
-        <strong>Tap a parking icon for details</strong>
+         Tap on any parking icon for it's details
       </div>
   </ion-content>
 </ion-view>

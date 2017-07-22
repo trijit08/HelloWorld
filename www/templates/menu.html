@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
+    <ion-nav-bar class="bar-assertive">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -14,14 +14,57 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+    <ion-header-bar class="bar-stable" align-title="center">
+      <h1 class="title">ePark Menu</h1>
     </ion-header-bar>
     <ion-content>
-      <ion-list>
-        <ion-item menu-close href="#/menu/home">
-          Home
-        </ion-item>
+	   <div style="text-align : center; margin-top : 5vw; margin-bottom : 4vw;">
+	           <img class="image_Profile" src="img/user.png"/>
+			   <div style="text-align : center;">
+					<h4>Arup Sengupta</h4>
+				</div>
+				<div style="text-align : center;">
+					<h5 style="font-weight : 400;">arupsen.mail@gmail.com</h5>
+					<h5 style="font-weight : 400; margin-top: -6px;">WB-08D-1145</h5>
+				</div>
+		</div>
+	
+      <ion-list class="list">
+			<ion-item menu-close href="#/menu/home">
+				 <a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/home">
+					<i class="icon ion-home"></i>Home
+				</a>
+			</ion-item>
+		
+		   <ion-item menu-close href="#/menu/profile">
+				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/profile">
+					<i class="icon ion-person"></i>My Profile
+				</a>
+		   </ion-item>
+		   
+		   <ion-item menu-close href="#/menu/bookingHistory">
+				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/bookingHistory">
+					<i class="icon ion-clipboard"></i>My Booking History
+				</a>
+		  </ion-item>
+		  
+		  <ion-item menu-close href="#/menu/chat">
+				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
+					<i class="icon ion-android-hangout"></i>Chat Assistance
+				</a>
+		  </ion-item>
+									
+		  <ion-item menu-close href="#/menu/about">
+				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
+					<i class="icon ion-paper-airplane"></i>About Us
+			    </a>
+		  </ion-item>
+									
+		 <ion-item menu-close href="#/menu/faq">
+				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
+					<i class="icon ion-android-bulb"></i>How ePark works
+				</a>
+		 </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>

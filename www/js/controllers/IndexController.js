@@ -21,7 +21,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
   $scope.markers = [];
   $scope.searchButtonText = "Search Location";
   $scope.currentLocation = {
-    description : 'Unknown Location'
+    description : 'Fetching your location ...'
   };
 
   $ionicModal.fromTemplateUrl('templates/modal/placeSearchModal.html', {
@@ -72,7 +72,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
         $scope.marker.setVisible(false);
         $scope.currentLocation.latlng = place.geometry.location;
         $scope.map.setCenter(place.geometry.location);
-        $scope.map.setZoom(15);
+        $scope.map.setZoom(16);
         $scope.marker.setPosition(place.geometry.location);
         $scope.marker.setVisible(true);
       }
@@ -125,7 +125,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
 
     var icon = {
       url : 'img/ionic.png',
-      scaledSize : new google.maps.Size(50,50),
+      scaledSize : new google.maps.Size(80,80),
       origin : new google.maps.Point(0,0),
       anchor : new google.maps.Point(0,0)
     };
@@ -173,6 +173,9 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
         if(status === 'OK'){
           if(results[1]){
             $scope.currentLocation.description = results[1].formatted_address;
+			
+			$scope.homeLocationDisplay = results[1].formatted_address;  //ADDITION
+			
             $scope.$apply();
           }
         }

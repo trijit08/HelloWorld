@@ -1,6 +1,20 @@
-angular.module('starter', ['ionic', 'ngCordova', 'ngStorage'])
+angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
 
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, $ionicCloudProvider){
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "dd192103"
+    },
+    "push": {
+      "sender_id": "1098016573394",
+      "pluginConfig": {
+        "android": {
+          "iconColor": "#343434"
+        }
+      }
+    }
+  });
+
   $stateProvider
   .state('menu',{
     url: '/menu',
@@ -9,6 +23,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage'])
     resolve: {
       auth: function(StorageService, UserService){
         UserService.setUser(StorageService.get());
+      },
+      parkings : function(LocationService){
+        return LocationService.getParkingArr().then(function(response){
+          return response;
+        }, function(error){
+          return null;
+        })
       }
     }
   })
@@ -34,7 +55,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage'])
     url: '/slotBooking',
     views: {
       'menuContent': {
-        templateUrl: 'templates/slotBooking.html',
+        templateUrl: 'templates/slotBook.html',
         controller: 'SlotBookingController'
       }
     }

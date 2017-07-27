@@ -21,45 +21,45 @@
 	   <div style="text-align : center; margin-top : 5vw; margin-bottom : 4vw;">
 	           <img class="image_Profile" src="img/user.png"/>
 			   <div style="text-align : center;">
-					<h4>Arup Sengupta</h4>
+					<h4>{{ user.name }}</h4>
 				</div>
 				<div style="text-align : center;">
-					<h5 style="font-weight : 400;">arupsen.mail@gmail.com</h5>
-					<h5 style="font-weight : 400; margin-top: -6px;">WB-08D-1145</h5>
+					<h5 style="font-weight : 400;">{{ user.email }}</h5>
+					<h5 style="font-weight : 400; margin-top: -6px;">{{ user.vehicle_no }}</h5>
 				</div>
 		</div>
-	
+
       <ion-list class="list">
 			<ion-item menu-close href="#/menu/home">
 				 <a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/home">
 					<i class="icon ion-home"></i>Home
 				</a>
 			</ion-item>
-		
+
 		   <ion-item menu-close href="#/menu/profile">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/profile">
 					<i class="icon ion-person"></i>My Profile
 				</a>
 		   </ion-item>
-		   
+
 		   <ion-item menu-close href="#/menu/bookingHistory">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/bookingHistory">
 					<i class="icon ion-clipboard"></i>My Booking History
 				</a>
 		  </ion-item>
-		  
+
 		  <ion-item menu-close href="#/menu/chat">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
 					<i class="icon ion-android-hangout"></i>Chat Assistance
 				</a>
 		  </ion-item>
-									
+
 		  <ion-item menu-close href="#/menu/about">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
 					<i class="icon ion-paper-airplane"></i>About Us
 			    </a>
 		  </ion-item>
-									
+
 		 <ion-item menu-close href="#/menu/faq">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
 					<i class="icon ion-android-bulb"></i>How ePark works

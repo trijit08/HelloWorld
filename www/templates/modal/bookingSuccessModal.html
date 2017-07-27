@@ -1,0 +1,19 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h4>Booking Request Confirmed</h4>
+  </ion-header-bar>
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        <i class="icon ion-checkmark"></i> Confirmed
+      </div>
+      <div class="item item-body">
+        <p>OTP: {{ bookingDetails.otp.value }}</p>
+        <p> Your booking is confirmed. Please show the otp to the parking operator</p>
+      </div>
+      <div class="item item-divider">
+        <button class="button button-positive" ng-click="gotoHome()">Done</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

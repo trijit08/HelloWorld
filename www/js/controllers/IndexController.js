@@ -2,19 +2,19 @@ var app = angular.module('starter');
 
 app.controller('IndexController', function($scope, $state, $cordovaGeolocation, $http, $ionicModal){
   /*socket.io  start*/
-    var socket = io.connect("https://arupepark.herokuapp.com");
-    socket.on('test', function(data){
-      //alert(JSON.stringify(data));
-      //socket.emit('other event', {my : data});
-      //alert($scope.markers[0]);
-      var icon = {
-        url : 'img/ionic-black.png',
-        scaledSize : new google.maps.Size(50,50),
-        origin : new google.maps.Point(0,0),
-        anchor : new google.maps.Point(0,0)
-      };
-      $scope.markers[0].setIcon(icon);
-    });
+    // var socket = io.connect("https://arupepark.herokuapp.com");
+    // socket.on('test', function(data){
+    //   //alert(JSON.stringify(data));
+    //   //socket.emit('other event', {my : data});
+    //   //alert($scope.markers[0]);
+    //   var icon = {
+    //     url : 'img/ionic-black.png',
+    //     scaledSize : new google.maps.Size(50,50),
+    //     origin : new google.maps.Point(0,0),
+    //     anchor : new google.maps.Point(0,0)
+    //   };
+    //   $scope.markers[0].setIcon(icon);
+    // });
   /*socket.io  end*/
 
   $scope.search = {};
@@ -23,6 +23,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
   $scope.currentLocation = {
     description : 'Fetching your location ...'
   };
+
+  $scope.parkingLocation = {};
 
   $ionicModal.fromTemplateUrl('templates/modal/placeSearchModal.html', {
     scope: $scope,
@@ -101,6 +103,12 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
     );
   };
 
+  $scope.bookNow = function(){
+    $scope.parkings[$scope.selectedIndex].isSelected = true;
+    $scope.parkingInfoModal.hide();
+    $state.go('menu.slotBooking');
+  };
+
   var service = new google.maps.places.AutocompleteService();
 
   var options = {timeout: 10000, enableHighAccuracy: true};
@@ -134,8 +142,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
       content : "Here I am!"
     });
 
-    $http.get('https://arupepark.herokuapp.com/location/').then(function(response){
-      $scope.parkings = response.data;
+    // LocationService.getParkingArr().success(function(data){
+      // $scope.parkings = data;
       for(var i=0;i<$scope.parkings.length;i++){
         var loc = $scope.parkings[i];
         var latlng = new google.maps.LatLng(loc.lat, loc.lng);
@@ -152,14 +160,15 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
             infoWindow.setContent($scope.parkings[i].name);
             infoWindow.open($scope.map, $scope.markers[i]);
             $scope.selectedParking = $scope.parkings[i];
+            $scope.selectedIndex = i;
             $scope.getDistance(new google.maps.LatLng($scope.parkings[i].lat, $scope.parkings[i].lng), i);
             $scope.parkingInfoModal.show();
           }
         })($scope.markers[i], i));
       }
-    }, function(error){
-      alert("Cannot trace data from server");
-    });
+    // }).error(function(error){
+    //   alert(JSON.stringify(error));
+    // });
 
     google.maps.event.addListenerOnce($scope.map, 'idle', function(){
       $scope.marker = new google.maps.Marker({
@@ -173,9 +182,6 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
         if(status === 'OK'){
           if(results[1]){
             $scope.currentLocation.description = results[1].formatted_address;
-			
-			$scope.homeLocationDisplay = results[1].formatted_address;  //ADDITION
-			
             $scope.$apply();
           }
         }

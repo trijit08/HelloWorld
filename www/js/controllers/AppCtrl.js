@@ -1,6 +1,19 @@
 var app = angular.module('starter');
 
-app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializerJQLike, StorageService, UserService){
+app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializerJQLike,
+    StorageService, UserService, parkings, LocationService, $ionicPush){
+
+  $ionicPush.register().then(function(t){
+    return $ionicPush.saveToken(t);
+  }).then(function(t){
+    console.log('Token saved: ', t.token);
+
+  });
+
+  $scope.$on('cloud:push:notification', function(event, data){
+    var msg = data.message;
+    console.log(msg.title + ': ' + msg.text);
+  });
 
   $scope.reg = {
     name: 'Arup Sengupta',
@@ -10,7 +23,12 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializ
     pwd: 'asdfghjkl'
   };
 
+  // alert(JSON.stringify(parkings));
+
+  $scope.parkings = parkings.data;
+
   $scope.user = UserService.getUser();
+  //alert(JSON.stringify($scope.user));
 
   $ionicModal.fromTemplateUrl('/templates/modal/loginModal.html',{
     scope: $scope,

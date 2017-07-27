@@ -1,0 +1,65 @@
+<ion-view view-title="Pick your Parking Slot">
+ <ion-content>
+
+ <!-- <div class="card">
+	  <div class="item item-divider" style="text-align : center; white-space : normal;">
+		  We're almost there!
+	  <div class="item item-text-wrap" style="text-align : center;">
+	  </div>
+		  Select your parking slot in the grid below and confirm your spot. The ones in red are already parked and not available. You can only select from among the grey slots.
+	  </div>
+</div> -->
+<div class="card" class="bookPref">
+  <div class="item item-divider">
+    At what time?
+  </div>
+  <div class="item">
+    <button class="button" ng-click="time.start = time.start == 1 ? 12 : time.start - 1">
+      <i class="icon ion-minus"></i>
+    </button>
+    {{ time.start }}
+    <button class="button" ng-click="time.start = time.start == 12 ? 1 : time.start + 1">
+      <i class="icon ion-plus"></i>
+    </button>
+    {{ time.am ? 'AM' : 'PM' }}
+    <button class="button" ng-click="time.am = !time.am">
+      <i class="icon ion-arrow-swap"></i>
+    </button>
+  </div>
+  <div class="item item-divider">
+    Hours:
+    <button class="button" ng-click="time.hours = time.hours == 1 ? 12 : time.hours - 1">
+      <i class="icon ion-minus"></i>
+    </button>
+    {{ time.hours }}
+    <button class="button" ng-click="time.hours = time.hours == 12 ? 1 : time.hours + 1">
+      <i class="icon ion-plus"></i>
+    </button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="item item-text-wrap" style="background-color : darkgrey; background-image : url('img/roadBack.png')">
+       <ol>
+	           <!-- ******************** SLOT REPEAT START ********************** -->
+				<li class="row row--1" ng-repeat="slot in selectedParking.parking_arr">
+				  <ol class="seats" type="A">
+  					<li class="seat">
+  					  <input type="radio" id="{{ slot._id }}" ng-model="selectedSlot.id" value="{{ slot._id }}" name="slot" ng-disabled="slot.status == 'booked'"/>
+  					  <label for="{{ slot._id }}">P{{ $index }}</label>
+  					</li>
+				  </ol>
+				</li>
+			    <!-- ******************** SLOT REPEAT END ********************** -->
+       </ol>
+  </div>
+</div>
+
+<div style="text-align : center; margin-bottom : 2em;">
+   <button class="button button-medium button-balanced" ng-click="bookParking()">
+        Book Parking
+  </button>
+</div>
+
+  </ion-content>
+</ion-view>

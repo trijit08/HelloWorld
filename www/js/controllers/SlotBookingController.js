@@ -36,12 +36,32 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
        }
      }).success(function(response){
        $scope.bookingDetails = response;
+	   
+	   $scope.formattedDate = $scope.changeDateFormat($scope.bookingDetails.date);
+	   $scope.formattedTime = $scope.changeTimeFormat($scope.bookingDetails.start_time);
+	   
        $scope.bookSuccessModal.show();
      }).error(function(response){
 
      });
    };
 
+   $scope.changeDateFormat = function(currentDate){
+       return currentDate.toString().substring(6, 8)  + "/" + (parseInt(currentDate.toString().substring(4, 6) , 10) + 1) + "/" + currentDate.toString().substring(0, 4);
+   };
+   
+   $scope.changeTimeFormat = function(startTime){
+       if(startTime > 12){
+	      return (startTime - 12) + ":00 PM";
+	   }
+	   else if(startTime == 12){
+	      return "12:00 PM"
+	   }
+	   else{
+	      return startTime + ":00 AM"
+	   }
+   };
+   
    $scope.gotoHome = function(){
      $scope.bookSuccessModal.hide();
      $ionicHistory.nextViewOptions({

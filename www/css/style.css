@@ -36,7 +36,8 @@
   bottom: 0;
   min-height: initial;
   top: initial;
-  height: 50%;
+  /*height: 50%;*/
+  height: 43%;
   border-width: 1px;
   border-style: solid;
 }

@@ -42,6 +42,24 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       }
     }
   })
+  .state('menu.login',{
+    url: '/login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginController'
+      }
+    }
+  })
+  .state('menu.register',{
+    url: '/register',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterController'
+      }
+    }
+  })
   .state('menu.bookingHistory',{
     url: '/bookingHistory',
     views: {
@@ -60,11 +78,11 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       }
     }
   })
-  .state('menu.about',{
-    url: '/about',
+  .state('menu.contacts',{
+    url: '/contacts',
     views: {
       'menuContent': {
-        templateUrl: 'templates/about.html'
+        templateUrl: 'templates/contacts.html'
       }
     }
   })
@@ -74,6 +92,15 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       'menuContent': {
         templateUrl: 'templates/chat.html',
 		controller: 'ChatController'
+      }
+    }
+  })
+  .state('menu.feedback',{
+    url: '/feedback',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/feedback.html',
+		controller: 'FeedbackController'
       }
     }
   })

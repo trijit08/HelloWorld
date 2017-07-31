@@ -1,7 +1,7 @@
 var app = angular.module('starter');
 
 app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializerJQLike,
-    StorageService, UserService, parkings, LocationService, $ionicPush){
+    StorageService, UserService, parkings, LocationService, $ionicPush, $state){
 
   $ionicPush.register().then(function(t){
     return $ionicPush.saveToken(t);
@@ -28,7 +28,16 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializ
   $scope.parkings = parkings.data;
 
   $scope.user = UserService.getUser();
+  //alert($scope.user.length);
   //alert(JSON.stringify($scope.user));
+  
+  /******************************************* USER LOGIN CHECK START ************************************/
+  if($scope.user.name != "" && $scope.user.password != "" && $scope.user.phone != "" && $scope.user.vehicle_no != ""){
+      $state.go('menu.home');
+  }else{
+      $state.go('menu.login');
+  }
+  /******************************************* USER LOGIN CHECK END ************************************/
 
   $ionicModal.fromTemplateUrl('/templates/modal/loginModal.html',{
     scope: $scope,

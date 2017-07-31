@@ -1,58 +1,5 @@
 <ion-view view-title="Your Profile">
  <ion-content>
     
-	<!-- ************************************************ WHEN ACCOUNT ALREADY PRESENT START ********************************************** -->
-	<div ng-if="accountPresent">
-        	
-	</div>
-	<!-- ************************************************ WHEN ACCOUNT ALREADY PRESENT END ********************************************** -->
-	
-	<!-- ************************************************ WHEN ACCOUNT NOT PRESENT START ********************************************** -->
-	<div ng-if="!accountPresent">
-	     <div class="card">
-		      <div class="item item-divider" style="text-align : center; white-space : normal;">
-                  How do I sign-up in ePark?
-              </div>
-			  <div class="item item-text-wrap" style="text-align : center;">
-				   As per policy, for booking any parking with ePark App you need to sign-up first. Just fill up the details and to verify your account we will be sending an auto-generated OTP to your Email ID. Enter that OTP here and you are done.
-			  </div>
-         </div>
-		 
-		 <div class="list">
-			  <label class="item item-input item-stacked-label">
-					<span class="input-label">Your Name</span>
-					<input type="text" placeholder="John Doe">
-			  </label>
-			  <label class="item item-input item-stacked-label">
-					<span class="input-label">Your Mobile Number</span>
-					<input type="number" placeholder="9012345678 (No need of +91)">
-			  </label>
-			  <label class="item item-input item-stacked-label">
-					<span class="input-label">Your Email ID</span>
-					<input type="email" placeholder="john.doe@domain.com">
-			  </label>
-			  <label class="item item-input item-stacked-label">
-					<span class="input-label">Vehicle Registration Number</span>
-					<input type="text" placeholder="WB-XXX-XXXX (eg- WB-12A-3456)">
-			  </label>
-         </div>
-		 
-		 <div style="text-align : -webkit-center;"> 
-		     <h4>Enter the OTP below</h4>
-			 <div class="list list-inset" style="width : 22vw; background-color : indigo;">
-				  <label class="item item-input">
-					  <input type="number" placeholder="****" style="font-size : 8vw; padding-right : 0px; margin-left: -2vw; margin-top: -1vw;"/>
-				  </label> 
-			 </div>
-		</div>
-		
-		<div style="text-align : center; margin-top: 5vw; margin-bottom: 5vw;">
-		    <button class="button button-medium button-positive">
-                 <i class="icon ion-android-person-add" style="margin-right : 5px;"></i>Create My Account
-            </button>
-		</div>
-	</div>
-	<!-- ************************************************ WHEN ACCOUNT NOT PRESENT END ********************************************** -->
-	  
   </ion-content>
 </ion-view>

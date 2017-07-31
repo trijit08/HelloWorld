@@ -1,14 +1,6 @@
 <ion-view view-title="Pick your Parking Slot">
  <ion-content>
-
- <!-- <div class="card">
-	  <div class="item item-divider" style="text-align : center; white-space : normal;">
-		  We're almost there!
-	  <div class="item item-text-wrap" style="text-align : center;">
-	  </div>
-		  Select your parking slot in the grid below and confirm your spot. The ones in red are already parked and not available. You can only select from among the grey slots.
-	  </div>
-</div> -->
+<!--
 <div class="card" class="bookPref">
   <div class="item item-divider">
     At what time?
@@ -37,29 +29,106 @@
     </button>
   </div>
 </div>
+-->
+           <div class="list card">
+					  <div class="item item-divider" style="text-align : center;">
+						  Choose your booking time
+					  </div>
+				  
+					  <div class="item item-avatar">
+						  <img src="img/clock.png">
+						  <h2>Select your Time and Meridian (AM/PM)</h2>
+						  <div>
+						      <table>
+							      <tr>
+								     <td>
+									    <div class="button button-small button-positive" style="height : 10px;" ng-click="time.start = time.start == 1 ? 12 : time.start - 1">
+							                 <span style="font-size : 23px;">-</span>
+							            </div>
+									 </td>
+									 <td>
+									     <div style="margin-left: 2vw;margin-right: 2vw;">
+							                 <span style="font-size: 20px;vertical-align: -webkit-baseline-middle;color: green;">{{time.start}}</span>
+							             </div>
+									 </td>
+									 <td>
+									    <div class="button button-small button-positive" style="height : 10px;" ng-click="time.start = time.start == 12 ? 1 : time.start + 1">
+							                 <span style="font-size : 23px;">+</span>
+							            </div>
+									 </td>
+									 <td>
+									    <div ng-click="time.am = !time.am" style="margin-left : 7vw;">
+							                 <img src="img/meridian.png" style="width: 30px; vertical-align: -webkit-baseline-middle;"/>
+							            </div>
+									 </td>
+									 <td>
+									    <div style="margin-left: 2vw;" ng-click="time.am = !time.am">
+										   <span style="font-size: 20px;vertical-align: -webkit-baseline-middle;color: green;">{{ time.am ? 'AM' : 'PM' }}</span>
+										</div>
+									 </td>
+									 <td>
+									    <span style="vertical-align: -webkit-baseline-middle; margin-left: 5vw;font-size: 18px;color: darkorange;">{{time.start}}:00 {{time.am ?'AM':'PM'}}</span>
+									 </td>
+								  </tr>
+							  </table>
+						  </div>
+                      </div>
+					  <div class="item item-avatar">
+						  <img src="img/close.png">
+						  <h2>Select your Booking span</h2>
+						   <div>
+						      <table>
+							      <tr>
+										 <td>
+											<div class="button button-small button-positive" style="height : 10px;" ng-click="time.hours = time.hours == 1 ? 12 : time.hours - 1">
+												 <span style="font-size : 23px;">-</span>
+											</div>
+										 </td>
+										 <td>
+											 <div style="margin-left: 2vw;margin-right: 2vw;">
+												 <span style="font-size: 20px;vertical-align: -webkit-baseline-middle;color: green;">{{time.hours}}</span>
+											 </div>
+										 </td>
+										 <td>
+											<div class="button button-small button-positive" style="height : 10px;" ng-click="time.hours = time.hours == 12 ? 1 : time.hours + 1">
+												 <span style="font-size : 23px;">+</span>
+											</div>
+										 </td>
+										 <td>
+											<span style="vertical-align: -webkit-baseline-middle; margin-left: 5vw;font-size: 18px;color: darkorange;">{{time.hours}} Hours</span>
+										 </td>
+									</tr>
+								</table>
+	                        </div>							
+                      </div>
+           </div>
 
-<div class="card">
-  <div class="item item-text-wrap" style="background-color : darkgrey; background-image : url('img/roadBack.png')">
-       <ol>
-	           <!-- ******************** SLOT REPEAT START ********************** -->
-				<li class="row row--1" ng-repeat="slot in selectedParking.parking_arr">
-				  <ol class="seats" type="A">
-  					<li class="seat">
-  					  <input type="radio" id="{{ slot._id }}" ng-model="selectedSlot.id" value="{{ slot._id }}" name="slot" ng-disabled="slot.status == 'booked'"/>
-  					  <label for="{{ slot._id }}">P{{ $index }}</label>
-  					</li>
-				  </ol>
-				</li>
-			    <!-- ******************** SLOT REPEAT END ********************** -->
-       </ol>
-  </div>
-</div>
+		   <div class="card">
+			  <div class="item item-text-wrap" style="background-color : darkgrey;">
+				   <ol>
+						   <!-- ******************** SLOT REPEAT START ********************** -->
+							<li class="row row--1" ng-repeat="slot in selectedParking.parking_arr">
+							  <ol class="seats" type="A">
+								<li class="seat">
+								  <input type="radio" id="{{ slot._id }}" ng-model="selectedSlot.id" value="{{ slot._id }}" name="slot" ng-disabled="slot.status == 'booked'"/>
+								  <!--<label for="{{ slot._id }}">P{{ $index }}</label>-->
+								  <label for="{{slot._id}}" style="width: 11em; height: 4em; margin-top :1em; margin-bottom : 1em;">
+								      <img src="img/car.png" style="width: 9em; height: 4em; margin-top: -5px;"/>
+								  </label>
+								</li>
+								<span style="margin-top: 10vw; margin-left: 3vw; font-weight: 500;">Slot P{{$index}}</span>
+								<img src="img/line.png" style="width: 17em; margin-left: -17em;height: 1em;"/> 
+							  </ol>
+							</li>
+							<!-- ******************** SLOT REPEAT END ********************** -->
+				   </ol>
+			  </div>
+			</div>
 
-<div style="text-align : center; margin-bottom : 2em;">
-   <button class="button button-medium button-balanced" ng-click="bookParking()">
-        Book Parking
-  </button>
-</div>
-
-  </ion-content>
+			<div style="text-align : center; margin-bottom : 2em;">
+			   <button class="button button-medium button-balanced" ng-click="bookParking()">
+					<i class="icon ion-clock" style="margin-right : 5px;"></i>Confirm Your Slot
+			  </button>
+			</div>
+     </ion-content>
 </ion-view>

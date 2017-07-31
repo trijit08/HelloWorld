@@ -1,15 +1,18 @@
 <ion-view view-title="Welcome to ePark">
   <ion-content>
-      <div id="parkSearch">
-          <div class="list list-inset">
-            <div class="item" ng-click="openModal()">
-              <div style="color : green; margin-bottom : 4px;">
-                <i class="icon ion-record" style="color : #32CD32; margin-right : 8px; font-size: 10px;"></i>Looking for parking near
-              </div>
-                {{currentLocation.description}}
-            </div>
-          </div>
+	  <div id="parkSearch">
+	     <div class="card" ng-click="openModal()">
+			  <div class="item item-text-wrap">
+				  <div style="color : green; margin-bottom : 4px; text-align : center;">
+                     <i class="icon ion-record" style="color : #32CD32; margin-right : 8px; font-size: 10px;"></i>Looking for parking near
+                  </div>
+				  <div style="text-align : center;">
+				     {{currentLocation.description}}
+				  </div>
+			  </div>
+		  </div>
       </div>
+	 	  
       <div id="map" data-tap-disabled="false"></div>
       <div id="info">
          Tap on any parking icon for it's details

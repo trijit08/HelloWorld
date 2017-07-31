@@ -1,0 +1,48 @@
+<ion-view hide-nav-bar="true" style="background-image : url('img/background.jpg');">
+   <ion-content>
+       <div style="text-align : center; margin-top : 8vw;">
+	       <img src="img/regUser.png" style="width : 20%"/>
+	   </div>
+   
+        <div class="list card" style="margin-top : 2vw;">
+			  <label class="item item-input item-stacked-label">
+				<span class="input-label">Your Username</span>
+				<input type="text" placeholder="John Doe" ng-model="userReg.name">
+			  </label>
+       </div>
+	   
+	   <div class="list card">
+	       <label class="item item-input item-stacked-label">
+				<span class="input-label">Your Mobile Number</span>
+				<input type="number" placeholder="+91 9123456780 (No need to give +91)" ng-model="userReg.phone">
+			</label>
+	   </div>
+	   
+	   <div class="list card">
+	       <label class="item item-input item-stacked-label">
+				<span class="input-label">Your Vehicle Number</span>
+				<input type="text" placeholder="WB XXX XXXX" ng-model="userReg.number">
+			</label>
+	   </div>
+	   
+	   <div class="list card">
+	       <label class="item item-input item-stacked-label">
+				<span class="input-label">Your Email ID</span>
+				<input type="email" placeholder="john.doe@email.com" ng-model="userReg.email">
+			</label>
+	   </div>
+	   
+	   <div class="list card">
+	       <label class="item item-input item-stacked-label">
+				<span class="input-label">Your Password</span>
+				<input type="password" placeholder="**************************" ng-model="userReg.pwd">
+			</label>
+	   </div>
+	   
+	   <div style="text-align : center;">
+	      <button class="button button-medium button-assertive" ng-click="userRegister();">
+		      <i class="icon ion-paper-airplane" style="margin-right : 5px;"></i>Create ePark Account
+		  </button>
+	   </div>
+   </ion-content>
+</ion-view>

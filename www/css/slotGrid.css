@@ -24,10 +24,11 @@ ol {
   flex: 0 0 14.28571428571429%;
   padding: 5px;
   position: relative;
-  /*width : 125vw;*/
-  width : 118vw;
-  height : 12vw;
+  /*width : 125vw;
+  width : 118vw;*/
+  height : 18vw;
 }
+
 .seat:nth-child(3) {
   margin-right: 14.28571428571429%;
 }

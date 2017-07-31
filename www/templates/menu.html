@@ -7,9 +7,11 @@
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
       </ion-nav-buttons>
+	  <!--
       <ion-nav-buttons side="right">
         <button class="button button-clear" ng-hide="user.isLoggedIn" ng-click="openLogin()">Login</button>
       </ion-nav-buttons>
+	  -->
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
@@ -49,20 +51,20 @@
 		  </ion-item>
 
 		  <ion-item menu-close href="#/menu/chat">
-				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
+				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/chat">
 					<i class="icon ion-android-hangout"></i>Chat Assistance
 				</a>
 		  </ion-item>
 
-		  <ion-item menu-close href="#/menu/about">
-				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
-					<i class="icon ion-paper-airplane"></i>About Us
+		  <ion-item menu-close href="#/menu/contacts">
+				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/contacts">
+					<i class="icon ion-paper-airplane"></i>Emergency Contacts
 			    </a>
 		  </ion-item>
 
-		 <ion-item menu-close href="#/menu/faq">
-				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/">
-					<i class="icon ion-android-bulb"></i>How ePark works
+		 <ion-item menu-close href="#/menu/feedback">
+				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/feedback">
+					<i class="icon ion-android-bulb"></i>Your Feedback
 				</a>
 		 </ion-item>
       </ion-list>

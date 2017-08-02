@@ -14,12 +14,12 @@
         <h2>Opening Hours</h2>
         <p style="font-size: 16px;color: chocolate;">
           {{selectedParking.opening_hours.start <= 12 ? selectedParking.opening_hours.start + 'am' : (selectedParking.opening_hours.start - 12) + 'pm'}} - {{selectedParking.opening_hours.end <= 12 ? selectedParking.opening_hours.end + 'am' : (selectedParking.opening_hours.end-12) + 'pm'}}
-          <span class="item-note" style="color : green; font-size : 22px;">&#8377;&nbsp;{{selectedParking.hourly_price}}/hour</span>
+          <span class="item-note" style="color : green; font-size : 16px;">&#8377;&nbsp;{{selectedParking.hourly_price}}/hour</span>
         </p>
 		  </div>
       <div class="item item-divider">
         <i class="icon ion-android-car" style="font-size: 20px;"></i>&nbsp;
-        <span>{{selectedParking.distance}} (approx {{selectedParking.duration}})</span> from your location
+        <span>{{selectedParking.distance}} (approx {{selectedParking.duration}})</span> from selected location
       </div>
 		</div>
 
@@ -30,7 +30,6 @@
   </ion-content>
   <ion-footer-bar>
     <div class="button-bar">
-      <button class="button button-medium button-stable" ng-click="bookLater()"><span style="font-size: 16px;font-weight: 500;">Book Later</span></button>
       <button class="button button-medium button-balanced" ng-click="bookNow()"><span style="font-size: 16px;font-weight: 500;">Book Now</span></button>
     </div>
   </ion-footer-bar>

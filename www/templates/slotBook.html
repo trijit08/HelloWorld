@@ -6,11 +6,11 @@
     At what time?
   </div>
   <div class="item">
-    <button class="button" ng-click="time.start = time.start == 1 ? 12 : time.start - 1">
+    <button class="button" ng-click="dcrStartTime()">
       <i class="icon ion-minus"></i>
     </button>
-    {{ time.start }}
-    <button class="button" ng-click="time.start = time.start == 12 ? 1 : time.start + 1">
+    {{ time.start > 12 ? time.start-12 : time.start }}
+    <button class="button" ng-click="incStartTime()">
       <i class="icon ion-plus"></i>
     </button>
     {{ time.am ? 'AM' : 'PM' }}
@@ -20,11 +20,11 @@
   </div>
   <div class="item item-divider">
     Hours:
-    <button class="button" ng-click="time.hours = time.hours == 1 ? 12 : time.hours - 1">
+    <button class="button" ng-click="time.hours = time.hours == 1 ? 1 : time.hours - 1">
       <i class="icon ion-minus"></i>
     </button>
     {{ time.hours }}
-    <button class="button" ng-click="time.hours = time.hours == 12 ? 1 : time.hours + 1">
+    <button class="button" ng-click="time.hours = (time.start + time.hours) == parking.opening_hours.end ? time.hours : time.hours + 1">
       <i class="icon ion-plus"></i>
     </button>
   </div>
@@ -34,25 +34,24 @@
 					  <div class="item item-divider" style="text-align : center;">
 						  Choose your booking time
 					  </div>
-				  
-					  <div class="item item-avatar">
-						  <img src="img/clock.png">
+
+					  <div class="item">
 						  <h2>Select your Time and Meridian (AM/PM)</h2>
 						  <div>
 						      <table>
 							      <tr>
 								     <td>
-									    <div class="button button-small button-positive" style="height : 10px;" ng-click="time.start = time.start == 1 ? 12 : time.start - 1">
+									    <div class="button button-small button-positive" style="height : 10px;" ng-click="dcrStartTime()">
 							                 <span style="font-size : 23px;">-</span>
 							            </div>
 									 </td>
 									 <td>
 									     <div style="margin-left: 2vw;margin-right: 2vw;">
-							                 <span style="font-size: 20px;vertical-align: -webkit-baseline-middle;color: green;">{{time.start}}</span>
+							                 <span style="font-size: 20px;vertical-align: -webkit-baseline-middle;color: green;">{{time.start <= 12 ? time.start: time.start - 12}}</span>
 							             </div>
 									 </td>
 									 <td>
-									    <div class="button button-small button-positive" style="height : 10px;" ng-click="time.start = time.start == 12 ? 1 : time.start + 1">
+									    <div class="button button-small button-positive" style="height : 10px;" ng-click="incStartTime()">
 							                 <span style="font-size : 23px;">+</span>
 							            </div>
 									 </td>
@@ -67,20 +66,19 @@
 										</div>
 									 </td>
 									 <td>
-									    <span style="vertical-align: -webkit-baseline-middle; margin-left: 5vw;font-size: 18px;color: darkorange;">{{time.start}}:00 {{time.am ?'AM':'PM'}}</span>
+									    <span style="vertical-align: -webkit-baseline-middle; margin-left: 5vw;font-size: 18px;color: darkorange;">{{time.start <= 12 ? time.start: time.start-12}}:00 {{time.am ?'AM':'PM'}}</span>
 									 </td>
 								  </tr>
 							  </table>
 						  </div>
                       </div>
-					  <div class="item item-avatar">
-						  <img src="img/close.png">
+					  <div class="item">
 						  <h2>Select your Booking span</h2>
 						   <div>
 						      <table>
 							      <tr>
 										 <td>
-											<div class="button button-small button-positive" style="height : 10px;" ng-click="time.hours = time.hours == 1 ? 12 : time.hours - 1">
+											<div class="button button-small button-positive" style="height : 10px;" ng-click="time.hours = time.hours == 1 ? 1 : time.hours - 1">
 												 <span style="font-size : 23px;">-</span>
 											</div>
 										 </td>
@@ -90,7 +88,7 @@
 											 </div>
 										 </td>
 										 <td>
-											<div class="button button-small button-positive" style="height : 10px;" ng-click="time.hours = time.hours == 12 ? 1 : time.hours + 1">
+											<div class="button button-small button-positive" style="height : 10px;" ng-click="incHours()">
 												 <span style="font-size : 23px;">+</span>
 											</div>
 										 </td>
@@ -99,25 +97,28 @@
 										 </td>
 									</tr>
 								</table>
-	                        </div>							
+	                        </div>
                       </div>
            </div>
 
 		   <div class="card">
-			  <div class="item item-text-wrap" style="background-color : darkgrey;">
-				   <ol>
+			  <div class="item item-text-wrap" style="background-color : #2e2c37;">
+				   <ol style="border-right: 0.2em solid white;">
 						   <!-- ******************** SLOT REPEAT START ********************** -->
-							<li class="row row--1" ng-repeat="slot in selectedParking.parking_arr">
-							  <ol class="seats" type="A">
+							<li class="row row--1" ng-repeat="slot in parking.parking_arr">
+							  <ol class="seats" type="A" style="border-right: 0.2em solid white;">
 								<li class="seat">
-								  <input type="radio" id="{{ slot._id }}" ng-model="selectedSlot.id" value="{{ slot._id }}" name="slot" ng-disabled="slot.status == 'booked'"/>
+								  <input type="radio" id="{{ slot._id }}" ng-model="selectedSlot.id" value="{{ slot._id }}" name="slot" ng-class="slot.status" ng-disabled="slot.status !== 'available'"/>
 								  <!--<label for="{{ slot._id }}">P{{ $index }}</label>-->
-								  <label for="{{slot._id}}" style="width: 11em; height: 4em; margin-top :1em; margin-bottom : 1em;">
-								      <img src="img/car.png" style="width: 9em; height: 4em; margin-top: -5px;"/>
+								  <label for="{{slot._id}}" style="width: 6em; height: 3em; margin-top :1em; margin-bottom : 1em;">
+								      <!--<img src="img/car.png" style="width: 9em; height: 4em; margin-top: -5px;"/>-->
 								  </label>
 								</li>
-								<span style="margin-top: 10vw; margin-left: 3vw; font-weight: 500;">Slot P{{$index}}</span>
-								<img src="img/line.png" style="width: 17em; margin-left: -17em;height: 1em;"/> 
+								<span style="margin-top: 9vw; margin-left: 3vw; font-weight: 500; padding-right:10px; color: #dddddd">P{{$index}}</span>
+								<img src="img/line.png" style="width: 17em; margin-left: -17em;height: 1em;"/>
+							  </ol>
+							  <ol type="B" class="seats" style="justify-content: center; width: 100%;">
+							  	<li class="seat" style="width: 0.2em; background-color: white; background-clip: content-box; padding-left:15px; padding-right:8px; color: white;">|</li>
 							  </ol>
 							</li>
 							<!-- ******************** SLOT REPEAT END ********************** -->

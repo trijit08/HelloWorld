@@ -1,55 +1,177 @@
 var app = angular.module('starter');
 
-app.controller('SlotBookingController', function($scope, $filter, $state, $http, $ionicHistory, $ionicModal, $httpParamSerializerJQLike){
-   $scope.time = {
-     start: 1,
-     am: false,
-     hours: 1
-   };
+app.controller('SlotBookingController', function($scope, $filter, $state, $http, $ionicHistory, $ionicModal, $httpParamSerializerJQLike, LocationService){
+
+  //  socket.on('booked', fucntion(data){
+	//     console.log(data);
+  //  });
 
    var path = "https://arupepark.herokuapp.com";
-  //  var path = "http://localhost:8080";
+   //var path = "http://localhost:8080";
+
+   var socket = io.connect(path);
+   socket.on('test', function(data){
+     alert(JSON.stringify(data));
+     socket.emit('other event', {my : data});
+     alert($scope.markers[0]);
+     // var icon = {
+     //   url : 'img/ionic-black.png',
+     //   scaledSize : new google.maps.Size(50,50),
+     //   origin : new google.maps.Point(0,0),
+     //   anchor : new google.maps.Point(0,0)
+     // };
+     // $scope.markers[0].setIcon(icon);
+   });
+
+   socket.on('booked', function(data){
+     if(data.parking_id == $scope.parking._id){
+       if(($scope.time.start >= data.start_time && $scope.time.start < data.start_time + data.hours)
+           || ($scope.time.start < data.start_time && ($scope.time.start + $scope.time.hours) > data.start_time)){
+             for(var i=0; i<$scope.parking.parking_arr.length; i++){
+               if($scope.parking.parking_arr[i]._id == data.slot_id){
+                 $scope.parking.parking_arr[i].status = 'booked';
+                 $scope.$apply();
+                 break;
+               }
+             }
+       }
+     }
+   });
+
+   socket.on('inprocess', function(data){
+     if(data.parking_id == $scope.parking._id){
+       if(($scope.time.start >= data.start_time && $scope.time.start < data.start_time + data.hours)
+           || ($scope.time.start < data.start_time && ($scope.time.start + $scope.time.hours) > data.start_time)){
+             for(var i=0; i<$scope.parking.parking_arr.length; i++){
+               if($scope.parking.parking_arr[i]._id == data.slot_id){
+                 if($scope.parking.parking_arr[i].status == 'available'){
+                   $scope.parking.parking_arr[i].status = 'inprocess';
+                 }
+                 $scope.$apply();
+                 break;
+               }
+             }
+       }
+     }
+   });
+
+   socket.on('vacant', function(data){
+     if(data.parking_id == $scope.parking._id){
+       if(($scope.time.start >= data.start_time && $scope.time.start < data.start_time + data.hours)
+           || ($scope.time.start < data.start_time && ($scope.time.start + $scope.time.hours) > data.start_time)){
+             for(var i=0; i<$scope.parking.parking_arr.length; i++){
+               if($scope.parking.parking_arr[i]._id == data.slot_id){
+                 $scope.parking.parking_arr[i].status = 'available';
+                 $scope.$apply();
+                 break;
+               }
+             }
+       }
+     }
+   });
 
    $scope.selectedSlot = {
      id : ''
    };
 
-   $scope.selectedParking = $filter('findParking')($scope.parkings);
-   //alert($scope.selectedParking);
-   if($scope.selectedParking == null){
-     $state.go('menu.home');
+   $scope.parking = LocationService.getParking();
+   $scope.time = LocationService.getTime();
+
+  //  $scope.parking = $filter('findParking')($scope.parkings);
+   //alert($scope.parking);
+   if($scope.parking == null){
+     $state.go('menu.home', null, {reload: true});
    }
+
+   console.log($scope.parking);
+
+   var date = new Date();
+   var hours = date.getHours();
+
+   var start_time = $scope.parking.opening_hours.start > hours ? $scope.parking.opening_hours.start : hours;
+
+
+   $scope.time.start = start_time;
+   $scope.time.am = start_time <= 12 ? true : false;
+   $scope.time.hours= 1
+
+   $scope.dcrStartTime = function(){
+     $scope.time.start = $scope.time.start == start_time ? start_time : $scope.time.start - 1;
+     $scope.time.am = $scope.time.start <= 12 ? true: false;
+   };
+
+   $scope.incStartTime = function(){
+     $scope.time.start = (($scope.time.start+$scope.time.hours) == $scope.parking.opening_hours.end) ? $scope.time.start : $scope.time.start + 1;
+     $scope.time.am = $scope.time.start <= 12 ? true: false;
+   };
+
+   $scope.incHours = function(){
+     $scope.time.hours = (($scope.time.start+$scope.time.hours) == $scope.parking.opening_hours.end) ? $scope.time.hours : $scope.time.hours + 1;
+   };
+
+   $scope.getIndex = function(slotid){
+       for(var i=0; i <= $scope.parking.number_of_slot; i++){
+         if($scope.parking.parking_arr[i]._id == slotid){
+           return i;
+         }
+       }
+       return 0;
+   };
 
    $scope.bookParking = function(){
      console.log($scope.selectedSlot.id);
-     var start = $scope.time.am ? $scope.time.start : $scope.time.start + 12;
-     var reqObj = {
-       user_id : $scope.user._id,
-       parking_id : $scope.selectedParking._id,
-       slot_id : $scope.selectedSlot.id,
-       start_time : start,
-       hours : $scope.time.hours
-     };
-     $http.post( path + '/booking', $httpParamSerializerJQLike(reqObj),{
-       headers:{
-         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
-       }
-     }).success(function(response){
-       $scope.bookingDetails = response;
-	   
-	   $scope.formattedDate = $scope.changeDateFormat($scope.bookingDetails.date);
-	   $scope.formattedTime = $scope.changeTimeFormat($scope.bookingDetails.start_time);
-	   
-       $scope.bookSuccessModal.show();
-     }).error(function(response){
+     if($scope.selectedSlot.id !== ''){
+       var start = $scope.time.start;
+       var reqObj = {
+         user_id : $scope.user._id,
+         parking_id : $scope.parking._id,
+         slot_id : $scope.selectedSlot.id,
+         start_time : start,
+         hours : $scope.time.hours
+       };
+       $http.post( path + '/booking', $httpParamSerializerJQLike(reqObj),{
+         headers:{
+           'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+         }
+       }).success(function(response){
+          $scope.bookingDetails = response;
+          $scope.bookingDetails.slot = $scope.getIndex($scope.bookingDetails.slot_id);
+  	      $scope.formattedDate = $scope.changeDateFormat($scope.bookingDetails.date);
+  	      $scope.formattedTime = $scope.changeTimeFormat($scope.bookingDetails.start_time);
 
-     });
+          $scope.bookSuccessModal.show();
+
+          var start = $scope.time.start <= 12 ? $scope.time.start : $scope.time.start - 12;
+          var ampm = $scope.time.start <= 12 ? 'am' : 'pm';
+          var index = $scope.bookingDetails.slot;
+          var payload = {
+            parking_id: $scope.parking._id,
+            reg_number: $scope.user.vehicle_no,
+            start: start,
+            ampm: ampm,
+            hours: $scope.time.hours,
+            index: index
+          };
+
+          $http.post(path + '/operator/notify', $httpParamSerializerJQLike(payload), {
+            headers:{
+              'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+          }).success(function(res){
+
+          }).error(function(err){
+            alert('Cannot notify operator');
+          });
+       }).error(function(response){
+
+       });
+     }
    };
 
    $scope.changeDateFormat = function(currentDate){
        return currentDate.toString().substring(6, 8)  + "/" + (parseInt(currentDate.toString().substring(4, 6) , 10) + 1) + "/" + currentDate.toString().substring(0, 4);
    };
-   
+
    $scope.changeTimeFormat = function(startTime){
        if(startTime > 12){
 	      return (startTime - 12) + ":00 PM";
@@ -61,7 +183,7 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
 	      return startTime + ":00 AM"
 	   }
    };
-   
+
    $scope.gotoHome = function(){
      $scope.bookSuccessModal.hide();
      $ionicHistory.nextViewOptions({
@@ -71,11 +193,11 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
    };
 
    $scope.$watch('time', function(newTime, oldTime){
-     var start_time = newTime.am ? newTime.start : newTime.start + 12;
-     $http.get(path + '/location/' + $scope.selectedParking._id + '/' + start_time + '/' + newTime.hours)
+     var start_time = newTime.start;
+     $http.get(path + '/location/' + $scope.parking._id + '/' + start_time + '/' + newTime.hours)
       .success(function(response){
         $scope.selectedSlot.id = '';
-        $scope.selectedParking = response;
+        $scope.parking = response;
       }).error(function(response){
         alert(JSON.stringify(response));
       });

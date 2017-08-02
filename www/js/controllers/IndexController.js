@@ -1,21 +1,23 @@
 var app = angular.module('starter');
 
-app.controller('IndexController', function($scope, $state, $cordovaGeolocation, $http, $ionicModal){
+app.controller('IndexController', function($scope, $state, $cordovaGeolocation, $http, $ionicModal, $ionicHistory, LocationService){
+
+  $ionicHistory.clearHistory();
   /*socket.io  start*/
     // var socket = io.connect("https://arupepark.herokuapp.com");
     // socket.on('test', function(data){
-    //   //alert(JSON.stringify(data));
-    //   //socket.emit('other event', {my : data});
-    //   //alert($scope.markers[0]);
-    //   var icon = {
-    //     url : 'img/ionic-black.png',
-    //     scaledSize : new google.maps.Size(50,50),
-    //     origin : new google.maps.Point(0,0),
-    //     anchor : new google.maps.Point(0,0)
-    //   };
-    //   $scope.markers[0].setIcon(icon);
+    //   alert(JSON.stringify(data));
+    //   socket.emit('other event', {my : data});
+    //   alert($scope.markers[0]);
+    //   // var icon = {
+    //   //   url : 'img/ionic-black.png',
+    //   //   scaledSize : new google.maps.Size(50,50),
+    //   //   origin : new google.maps.Point(0,0),
+    //   //   anchor : new google.maps.Point(0,0)
+    //   // };
+    //   // $scope.markers[0].setIcon(icon);
     // });
-  /*socket.io  end*/
+   /* socket.io end */
 
   $scope.search = {};
   $scope.markers = [];
@@ -104,7 +106,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
   };
 
   $scope.bookNow = function(){
-    $scope.parkings[$scope.selectedIndex].isSelected = true;
+    // $scope.parkings[$scope.selectedIndex].isSelected = true;
+    LocationService.setParking($scope.parkings[$scope.selectedIndex]);
     $scope.parkingInfoModal.hide();
     $state.go('menu.slotBooking');
   };
@@ -138,9 +141,9 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
       anchor : new google.maps.Point(0,0)
     };
 
-    var infoWindow = new google.maps.InfoWindow({
-      content : "Here I am!"
-    });
+    // var infoWindow = new google.maps.InfoWindow({
+    //   content : "Here I am!"
+    // });
 
     // LocationService.getParkingArr().success(function(data){
       // $scope.parkings = data;
@@ -157,8 +160,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
 
         google.maps.event.addListener($scope.markers[i], 'click', (function(marker, i){
           return function(){
-            infoWindow.setContent($scope.parkings[i].name);
-            infoWindow.open($scope.map, $scope.markers[i]);
+            // infoWindow.setContent($scope.parkings[i].name);
+            // infoWindow.open($scope.map, $scope.markers[i]);
             $scope.selectedParking = $scope.parkings[i];
             $scope.selectedIndex = i;
             $scope.getDistance(new google.maps.LatLng($scope.parkings[i].lat, $scope.parkings[i].lng), i);

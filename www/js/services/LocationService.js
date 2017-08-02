@@ -4,16 +4,34 @@ app.factory('LocationService', function($http){
 
   // var path = "http://localhost:8080";
   var path = "https://arupepark.herokuapp.com";
+  var time = {
+    start: 0,
+    am: true,
+    hours: 1
+  };
 
   var parkingArr = [];
   var parkingId = '';
+  var parking = {};
 
   var getParkingId = function(){
     return parkingId;
   };
 
+  var getTime = function(){
+    return time;
+  };
+
   var setParkingId = function(arg){
     parkingId = arg;
+  };
+
+  var getParking = function(){
+    return parking;
+  };
+
+  var setParking = function(obj){
+    parking = obj;
   };
 
   var getParkingArr = function(){
@@ -30,7 +48,10 @@ app.factory('LocationService', function($http){
   var factory = {
     getParkingArr : getParkingArr,
     getParkingId : getParkingId,
-    setParkingId : setParkingId
+    setParkingId : setParkingId,
+    getParking : getParking,
+    setParking : setParking,
+    getTime : getTime
   };
 
   return factory;

@@ -2,8 +2,8 @@
 
 /* ***************** CSS CLASS FOR THE MENU IMAGE START ********************** */
 .image_Profile{
-    height: 24vw; 
-    width: 24vw; 
+    height: 24vw;
+    width: 24vw;
     border: 2px solid #fff;
     border-radius: 50%;
     box-shadow: 0 0 5px gray;
@@ -18,6 +18,11 @@
 #map{
   width: 100%;
   height: 100%;
+}
+
+
+.successCard{
+	
 }
 
 #searchTextField{
@@ -37,7 +42,7 @@
   min-height: initial;
   top: initial;
   /*height: 50%;*/
-  height: 43%;
+  height: 50%;
   border-width: 1px;
   border-style: solid;
 }

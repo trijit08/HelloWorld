@@ -8,18 +8,25 @@ app.controller('RegisterController',function($scope, StorageService, UserService
 			number: '',
 			pwd: ''
 	 };
-	 
+
 	 $scope.userRegister = function(){
 	     UserService.doRegister($scope.userReg)
 		    .then(function(response){
 				  if(response.status === 200){
-					$scope.user = response.data;
-					StorageService.add($scope.user);
-					$state.go('menu.home');
-				  }else{
-					alert('Could not add user');
+  					$scope.user = response.data;
+  					StorageService.add($scope.user);
+            $ionicPush.register().then(function(t){
+              return $ionicPush.saveToken(t);
+            }).then(function(t){
+              UserService.saveToken(t.token).then(function(response){
+                console.log('Token saved: ', t.token);
+              }, function(err){
+                console.log(err);
+              });
+            });
+  					$state.go('menu.home',null, {location: 'replace'});
 				  }
-			},function(errResponse){
+			  },function(errResponse){
 			  alert(JSON.stringify(errResponse));
 		 });
 	 };

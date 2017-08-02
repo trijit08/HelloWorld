@@ -1,7 +1,7 @@
 var app = angular.module('starter');
 
 app.factory('UserService', function($http,$httpParamSerializerJQLike){
-  //var url = "http://localhost:8080";
+  // var url = "http://localhost:8080";
   var url = "https://arupepark.herokuapp.com";
 
   var user = {};
@@ -30,6 +30,7 @@ app.factory('UserService', function($http,$httpParamSerializerJQLike){
         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
       }
     }).success(function(response){
+      user = response;
       return response;
     }).error(function(err){
       return err;
@@ -50,8 +51,8 @@ app.factory('UserService', function($http,$httpParamSerializerJQLike){
     });
   };
 
-  var updateProfile = function(){
-    return $http.put(url + '/users/' + user._id, $httpParamSerializerJQLike(user), {
+  var updateProfile = function(reguser){
+    return $http.put(url + '/users/' + reguser._id, $httpParamSerializerJQLike(reguser), {
       headers : {
         'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
       }

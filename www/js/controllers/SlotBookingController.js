@@ -7,9 +7,9 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
   //  });
 
    var path = "https://arupepark.herokuapp.com";
-   //var path = "http://localhost:8080";
+  //  var path = "http://localhost:8080";
 
-   /*var socket = io.connect(path);
+   var socket = io.connect(path);
    socket.on('test', function(data){
      alert(JSON.stringify(data));
      socket.emit('other event', {my : data});
@@ -38,7 +38,23 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
      }
    });
 
+   socket.on('pending', function(data){
+     if(data.parking_id == $scope.parking._id){
+       if(($scope.time.start >= data.start_time && $scope.time.start < data.start_time + data.hours)
+           || ($scope.time.start < data.start_time && ($scope.time.start + $scope.time.hours) > data.start_time)){
+             for(var i=0; i<$scope.parking.parking_arr.length; i++){
+               if($scope.parking.parking_arr[i]._id == data.slot_id){
+                 $scope.parking.parking_arr[i].status = 'pending';
+                 $scope.$apply();
+                 break;
+               }
+             }
+       }
+     }
+   });
+
    socket.on('inprocess', function(data){
+     console.log('inprocess');
      if(data.parking_id == $scope.parking._id){
        if(($scope.time.start >= data.start_time && $scope.time.start < data.start_time + data.hours)
            || ($scope.time.start < data.start_time && ($scope.time.start + $scope.time.hours) > data.start_time)){
@@ -68,7 +84,7 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
              }
        }
      }
-   });*/
+   });
 
    $scope.selectedSlot = {
      id : ''
@@ -88,7 +104,8 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
    var date = new Date();
    var hours = date.getHours();
 
-   var start_time = $scope.parking.opening_hours.start > hours ? $scope.parking.opening_hours.start : hours;
+   //var start_time = $scope.parking.opening_hours.start > hours ? $scope.parking.opening_hours.start : hours;
+   var start_time = hours;
 
 
    $scope.time.start = start_time;
@@ -154,14 +171,10 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
             index: index
           };
 
-          $http.post(path + '/operator/notify', $httpParamSerializerJQLike(payload), {
-            headers:{
-              'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
-            }
-          }).success(function(res){
+          $http.get(path + '/operator/notify', $httpParamSerializerJQLike(payload)).success(function(res){
 
           }).error(function(err){
-            alert('Cannot notify operator');
+            console.log("Cannot notify operator");
           });
        }).error(function(response){
 
@@ -187,10 +200,10 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
 
    $scope.gotoHome = function(){
      $scope.bookSuccessModal.hide();
-     $ionicHistory.nextViewOptions({
-       disableBack: true
-     });
-     $state.go('menu.home',{},{location: "replace"});
+    //  $ionicHistory.nextViewOptions({
+    //    disableBack: true
+    //  });
+     $state.go('menu.home',null, {reload: true});
    };
 
    $scope.$watch('time', function(newTime, oldTime){

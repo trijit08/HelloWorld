@@ -22,6 +22,10 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializ
   $scope.parkings = parkings.data;
   $scope.parking = LocationService.getParking();
 
+  $scope.currentLocation = {
+    latlng : new google.maps.LatLng(22.5726, 88.3639)
+  };
+
 
   /******************************************* USER LOGIN CHECK START ************************************/
   // if($scope.user.name != "" && $scope.user.password != "" && $scope.user.phone != "" && $scope.user.vehicle_no != ""){

@@ -35,6 +35,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       },
       parkings : function(LocationService){
         return LocationService.getParkingArr().then(function(response){
+          console.log(response);
           return response;
         }, function(error){
           return null;
@@ -56,14 +57,10 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
     templateUrl: 'templates/login.html',
     controller: 'LoginController'
   })
-  .state('menu.register',{
+  .state('register',{
     url: '/register',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/register.html',
-        controller: 'RegisterController'
-      }
-    }
+    templateUrl: 'templates/register.html',
+    controller: 'RegisterController'
   })
   .state('menu.bookingHistory',{
     url: '/bookingHistory',
@@ -117,7 +114,17 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
         controller: 'ProfileController'
       }
     }
+  })
+  .state('menu.logout',{
+    url: '/logout',
+    views: {
+      'menuContent': {
+      	templateUrl : 'templates/logout.html',
+	controller : 'LogoutController'
+      }
+    }
   });
+
 
   $urlRouterProvider.otherwise("/menu/home");
 })

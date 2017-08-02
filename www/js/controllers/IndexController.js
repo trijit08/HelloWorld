@@ -116,63 +116,54 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
 
   var options = {timeout: 10000, enableHighAccuracy: true};
 
+  var mapOptions = {
+    zoom : 17,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDefaultUI: true
+  };
+  var card = document.getElementById("parkSearch");
+
+  $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  $scope.map.setCenter($scope.currentLocation.latlng);
+  $scope.placesService = new google.maps.places.PlacesService($scope.map);
+  $scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
+  $scope.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(document.getElementById("info"));
+
+  var icon = {
+    url : 'img/ionic.png',
+    scaledSize : new google.maps.Size(80,80),
+    origin : new google.maps.Point(0,0),
+    anchor : new google.maps.Point(0,0)
+  };
+
+  for(var i=0;i<$scope.parkings.length;i++){
+    var loc = $scope.parkings[i];
+    var latlng = new google.maps.LatLng(loc.lat, loc.lng);
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: $scope.map,
+      icon: icon
+    });
+
+    $scope.markers.push(marker);
+
+    google.maps.event.addListener($scope.markers[i], 'click', (function(marker, i){
+      return function(){
+        // infoWindow.setContent($scope.parkings[i].name);
+        // infoWindow.open($scope.map, $scope.markers[i]);
+        $scope.selectedParking = $scope.parkings[i];
+        $scope.selectedIndex = i;
+        $scope.getDistance(new google.maps.LatLng($scope.parkings[i].lat, $scope.parkings[i].lng), i);
+        $scope.parkingInfoModal.show();
+      }
+    })($scope.markers[i], i));
+  }
+
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
     //alert(JSON.stringify(position));
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     $scope.currentLocation.latlng = latlng;
-
-    var mapOptions = {
-      center : latlng,
-      zoom : 17,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      disableDefaultUI: true
-    };
-    var card = document.getElementById("parkSearch");
-
-    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    $scope.placesService = new google.maps.places.PlacesService($scope.map);
-    $scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
-    $scope.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(document.getElementById("info"));
-
-    var icon = {
-      url : 'img/ionic.png',
-      scaledSize : new google.maps.Size(80,80),
-      origin : new google.maps.Point(0,0),
-      anchor : new google.maps.Point(0,0)
-    };
-
-    // var infoWindow = new google.maps.InfoWindow({
-    //   content : "Here I am!"
-    // });
-
-    // LocationService.getParkingArr().success(function(data){
-      // $scope.parkings = data;
-      for(var i=0;i<$scope.parkings.length;i++){
-        var loc = $scope.parkings[i];
-        var latlng = new google.maps.LatLng(loc.lat, loc.lng);
-        var marker = new google.maps.Marker({
-          position: latlng,
-          map: $scope.map,
-          icon: icon
-        });
-
-        $scope.markers.push(marker);
-
-        google.maps.event.addListener($scope.markers[i], 'click', (function(marker, i){
-          return function(){
-            // infoWindow.setContent($scope.parkings[i].name);
-            // infoWindow.open($scope.map, $scope.markers[i]);
-            $scope.selectedParking = $scope.parkings[i];
-            $scope.selectedIndex = i;
-            $scope.getDistance(new google.maps.LatLng($scope.parkings[i].lat, $scope.parkings[i].lng), i);
-            $scope.parkingInfoModal.show();
-          }
-        })($scope.markers[i], i));
-      }
-    // }).error(function(error){
-    //   alert(JSON.stringify(error));
-    // });
-
+    $scope.map.setCenter($scope.currentLocation.latlng);
     google.maps.event.addListenerOnce($scope.map, 'idle', function(){
       $scope.marker = new google.maps.Marker({
         map: $scope.map,
@@ -190,7 +181,6 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
         }
       });
     });
-
   }, function(error){
     console.log("Could not get location");
   });

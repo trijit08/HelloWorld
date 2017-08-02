@@ -9,7 +9,7 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
    var path = "https://arupepark.herokuapp.com";
    //var path = "http://localhost:8080";
 
-   var socket = io.connect(path);
+   /*var socket = io.connect(path);
    socket.on('test', function(data){
      alert(JSON.stringify(data));
      socket.emit('other event', {my : data});
@@ -68,7 +68,7 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
              }
        }
      }
-   });
+   });*/
 
    $scope.selectedSlot = {
      id : ''

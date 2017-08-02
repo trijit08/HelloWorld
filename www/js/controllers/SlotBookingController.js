@@ -127,7 +127,8 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
          parking_id : $scope.parking._id,
          slot_id : $scope.selectedSlot.id,
          start_time : start,
-         hours : $scope.time.hours
+         hours : $scope.time.hours,
+	 reg_number : $scope.user.vehicle_no
        };
        $http.post( path + '/booking', $httpParamSerializerJQLike(reqObj),{
          headers:{

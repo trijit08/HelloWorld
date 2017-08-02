@@ -43,7 +43,7 @@ ol {
   animation-name: rubberBand;
   animation-duration: 300ms;
   animation-fill-mode: both;
-  background-image: url('img/car.png');
+  background-image: url('../img/car.png');
   background-size: 100% 100%;
 }
 
@@ -51,7 +51,7 @@ ol {
   background: #ff9980;
   text-indent: -9999px;
   overflow: hidden;
-  background-image: url('img/car.png');
+  background-image: url('../img/car.png');
   background-size: 100% 100%;
 }
 
@@ -59,7 +59,7 @@ ol {
   background: #ffffb3;
   text-indent: -9999px;
   overflow: hidden;
-  background-image: url('img/car.png');
+  background-image: url('../img/car.png');
   background-size: 100% 100%;
 }
 
@@ -67,7 +67,7 @@ ol {
   background: #999999;
   text-indent: -9999px;
   overflow: hidden;
-  background-image: url('img/car.png');
+  background-image: url('../img/car.png');
   background-size: 100% 100%;
 }
 
@@ -97,7 +97,7 @@ ol {
   border-radius: 5px;
   animation-duration: 300ms;
   animation-fill-mode: both;
-  background-image: url('/img/car.png');
+  background-image: url('../img/car.png');
   background-size: 100% 100%;
 }
 .seat label:before {

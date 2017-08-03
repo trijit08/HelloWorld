@@ -8,7 +8,7 @@ app.controller('BookingHistoryController', function($scope, UserService, $http){
   $http.get(url+ '/booking/user/' + $scope.user._id).success(function(response){
     $scope.bookingHistory = response;
     for(var i=0; i<$scope.bookingHistory.length; i++){
-      $scope.bookingHistory[i].formatDate = $scope.formatDate($scope.bookingHistory[i].date.toString());
+	  $scope.bookingHistory[i].formatDate = $scope.formatDate($scope.bookingHistory[i].date.toString());  
     }
   });
 

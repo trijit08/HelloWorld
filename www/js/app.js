@@ -24,7 +24,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       auth: function(StorageService, UserService, $q){
         var d = $q.defer();
         var user = StorageService.get();
-        alert(JSON.stringify(user));
+        //alert(JSON.stringify(user));
         if(!angular.equals(user, {})){
             UserService.setUser(user);
             d.resolve();

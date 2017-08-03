@@ -27,7 +27,7 @@ app.controller('LoginController',function($scope, StorageService, UserService, $
 				      alert(response.data);
 			  }
 			},function(errResponse){
-			  alert(JSON.stringify(errResponse));
+			    alert(JSON.stringify(errResponse));
 			});
 	 };
 });

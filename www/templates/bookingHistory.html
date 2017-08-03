@@ -1,10 +1,15 @@
 <ion-view view-title="Your Booking History">
    <ion-content>
-       <div class="list card" ng-hide="bookingHistory.length">
-         <div class="item">
-           <h2>No bookings found</h2>
-         </div>
-       </div>
+       
+         <div class="card" ng-hide="bookingHistory.length">
+			  <div class="item item-divider" style="text-align : center;">
+				 Oops! Nothing to show here
+			  </div>
+			  <div class="item item-text-wrap" style="text-align : center;">
+				Well apparently, you do not have any Bookings till date with ePark. All your present and past bookings are meant to be shown here. It's ok, start booking and enjoy a hassle free parking experience. 
+			  </div>
+		 </div>	  
+       
        <div class="list card" ng-repeat="booking in bookingHistory">
 			  <div class="item item-avatar">
 				<img src="img/greencar.png">
@@ -22,6 +27,7 @@
 						   <li><span style="font-weight : 500;">Booking End Time :</span> {{booking.start_time+booking.hours <= 12 ? booking.start_time+booking.hours : booking.start_time++booking.hours - 12}} {{booking.start_time+booking.hours <= 12 ? 'AM' : 'PM'}}</li>
 						   <li><span style="font-weight : 500;">Booking Span :</span>{{booking.hours}} Hours</li>
 						   <li style="margin-top : 2vw;"><span style="font-weight : 500;">Charge :</span> <span style="font-size: 5vw; font-weight: 500; color: brown;">₹ {{booking.parking_id.hourly_price * booking.hours}}</span></li>
+						   <!--<li ng-if="showOTPFlag" style="margin-top : 2vw;"><span style="font-weight : 500;">Your OTP :</span> <span style="font-size: 5vw; font-weight: 500; color: brown;">{{userOTP}}</span></li>-->
 						</ul>
 
 						<div style="float : right;">Status : <span style="font-size : 20px; color : green;">{{booking.status}}</span></div>

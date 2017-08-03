@@ -12,11 +12,9 @@
        
        <div class="list card" ng-repeat="booking in bookingHistory">
 			  <div class="item item-avatar">
-				<img src="img/greencar.png">
+				<img src="img/history.png">
 				<h2>{{booking.formatDate}}</h2>
-				<p>
-          {{booking.parking_id.name}}
-        </p>
+				<p style="font-size : 15px;">{{booking.parking_id.name}}</p>
 
 			  </div>
 
@@ -27,31 +25,22 @@
 						   <li><span style="font-weight : 500;">Booking End Time :</span> {{booking.start_time+booking.hours <= 12 ? booking.start_time+booking.hours : booking.start_time++booking.hours - 12}} {{booking.start_time+booking.hours <= 12 ? 'AM' : 'PM'}}</li>
 						   <li><span style="font-weight : 500;">Booking Span :</span>{{booking.hours}} Hours</li>
 						   <li style="margin-top : 2vw;"><span style="font-weight : 500;">Charge :</span> <span style="font-size: 5vw; font-weight: 500; color: brown;">₹ {{booking.parking_id.hourly_price * booking.hours}}</span></li>
-						   <!--<li ng-if="showOTPFlag" style="margin-top : 2vw;"><span style="font-weight : 500;">Your OTP :</span> <span style="font-size: 5vw; font-weight: 500; color: brown;">{{userOTP}}</span></li>-->
+						   <li ng-if="booking.status == 'pending'" style="margin-top : 2vw;"><span style="font-weight : 500;">Your OTP :</span> <span style="font-size: 5vw; font-weight: 500; color: green;">{{booking.otp.value}}</span></li>
 						</ul>
 
-						<div style="float : right;">Status : <span style="font-size : 20px; color : green;">{{booking.status}}</span></div>
+						<!--<div style="float : right;">Status : <span style="font-size : 20px; color : green;">{{booking.status}}</span></div>-->
+						<img ng-if="booking.status == 'pending'" src="img/pending.png" style="float : right; width: 28%; margin-top: -10vw;"/>
+						<img ng-if="booking.status == 'completed'" src="img/completed.png" style="float : right; width: 32%; margin-top: -14vw;"/>
+						<img ng-if="booking.status == 'cancelled'" src="img/cancel.png" style="float : right; width: 28%; margin-top: -10vw;"/>
+						<img ng-if="booking.status == 'booked'" src="img/completed.png" style="float : right; width: 32%; margin-top: -14vw;"/>
+						
+						<div ng-if="booking.status == 'pending'" style="text-align : center; margin-top: 6vw;">
+						     <button class="button button-medium button-royal" ng-click="cancelBooking(booking._id);">
+							     <i class="icon ion-close-circled" style="margin-right : 5px;"></i>Cancel Booking
+							 </button>
+						</div>
 			 </div>
        </div>
 
-	   <!-- <div class="list card">
-			  <div class="item item-avatar">
-				<img src="img/redcar.png">
-				<h2>Monday, 10th July, 2017</h2>
-				<p>RDB Cinemas Parking Slot</p>
-			  </div>
-
-			  <div class="item item-body">
-						<p style="font-weight : 500; font-size : 16px;">Booking ID : KA154321</p>
-						<ul>
-						   <li><span style="font-weight : 500;">Booking Start Time :</span> 8:00 PM</li>
-						   <li><span style="font-weight : 500;">Booking End Time :</span> --:-- PM</li>
-						   <li><span style="font-weight : 500;">Booking Span :</span> --.-- Hours</li>
-						   <li style="margin-top : 2vw;"><span style="font-weight : 500;">Charge :</span> <span style="font-size: 5vw; font-weight: 500; color: brown;">₹ 0</span></li>
-						</ul>
-
-						<div style="float : right;">Status : <span style="font-size : 20px; color : #FF0000;">CANCELLED</span></div>
-			 </div>
-       </div> -->
    </ion-content>
 </ion-view>

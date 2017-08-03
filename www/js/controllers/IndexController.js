@@ -2,11 +2,13 @@ var app = angular.module('starter');
 
 app.controller('IndexController', function($scope, $state, $cordovaGeolocation, $http, $ionicModal, $ionicHistory, LocationService){
 
- // $ionicHistory.clearHistory();
+  $ionicHistory.clearHistory();
   /*socket.io  start*/
     // var socket = io.connect("https://arupepark.herokuapp.com");
     // socket.on('test', function(data){
+    //   alert(JSON.stringify(data));
     //   socket.emit('other event', {my : data});
+    //   alert($scope.markers[0]);
     //   // var icon = {
     //   //   url : 'img/ionic-black.png',
     //   //   scaledSize : new google.maps.Size(50,50),
@@ -158,6 +160,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
   }
 
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+    //alert(JSON.stringify(position));
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     $scope.currentLocation.latlng = latlng;
     $scope.map.setCenter($scope.currentLocation.latlng);

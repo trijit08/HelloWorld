@@ -1,6 +1,6 @@
 <ion-modal-view>
   <ion-header-bar class="bar-stable">
-	  <h4>Booking Request Confirmed</h4>
+	  <h4 style="margin-left: 3vw;">Booking Request Confirmed</h4>
   </ion-header-bar>
   <ion-content>
     <!--
@@ -23,15 +23,19 @@
 			  Your Booking Details
 		  </div>
 
-		  <div class="item item-icon-left">
+		  <div class="item item-icon-left" style="white-space : normal;">
 			<i class="icon ion-calendar"></i>Booking Date : <span style="color : chocolate;">{{formattedDate}}</span>
 		  </div>
+		  
+		  <div ng-if="showOtherBookingFlag" class="item item-icon-left" style="white-space : normal;">
+			<i class="icon ion-person-add"></i>Vehicle Registration (since this wasn't your vehicle) : <span style="color : chocolate;">{{otherVehicleReg}}</span>
+		  </div>
 
-		  <div class="item item-icon-left item-icon-right">
+		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
 			<i class="icon ion-clock"></i>Start Time : <span style="color : chocolate;">{{formattedTime}}</span>
 		  </div>
 
-		  <div class="item item-icon-left item-icon-right">
+		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
 			<i class="icon ion-android-watch"></i>Booking Span : <span>{{bookingDetails.hours}} Hour(s)</span>
 		  </div>
 
@@ -39,7 +43,7 @@
 			<i class="icon ion-android-wifi"></i>Sensor Slot ID : <span>P{{bookingDetails.slot}}</span>
 		  </div>
 
-		  <div class="item item-icon-left item-icon-right" style="">
+		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
 			<i class="icon ion-android-star"></i>Your OTP : <span style="color : green; font-size : 20px; font-weight : 500;">{{bookingDetails.otp.value}}</span>
 		  </div>
     </div>

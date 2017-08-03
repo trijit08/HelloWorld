@@ -1,7 +1,7 @@
 var app = angular.module('starter');
 
-app.controller('ProfileCtrl', function($scope, UserService){
-    alert("Hi");
+app.controller('ProfileController', function($scope, UserService){
+    //alert("Hi");
 	//$scope.user = UserService.getUser();
 	$scope.reguser = UserService.getUser();
 	console.log($scope.reguser);

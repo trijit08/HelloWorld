@@ -1,7 +1,12 @@
 var app = angular.module('starter');
 
-app.controller('SlotBookingController', function($scope, $filter, $state, $http, $ionicHistory, $ionicModal, $httpParamSerializerJQLike, LocationService){
-
+app.controller('SlotBookingController', function($scope, $window, $filter, $state, $http, $ionicHistory, $ionicModal, $httpParamSerializerJQLike, LocationService){
+   
+   $scope.newUser = {
+      choice : "",
+      vehicleReg : ""
+   };
+   
   //  socket.on('booked', fucntion(data){
 	//     console.log(data);
   //  });
@@ -11,9 +16,9 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
 
    var socket = io.connect(path);
    socket.on('test', function(data){
-     alert(JSON.stringify(data));
+     //alert(JSON.stringify(data));
      socket.emit('other event', {my : data});
-     alert($scope.markers[0]);
+     //alert($scope.markers[0]);
      // var icon = {
      //   url : 'img/ionic-black.png',
      //   scaledSize : new google.maps.Size(50,50),
@@ -137,17 +142,32 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
 
    $scope.bookParking = function(){
      console.log($scope.selectedSlot.id);
+	
      if($scope.selectedSlot.id !== ''){
        var start = $scope.time.start;
-       var reqObj = {
-         user_id : $scope.user._id,
-         parking_id : $scope.parking._id,
-         slot_id : $scope.selectedSlot.id,
-         start_time : start,
-         hours : $scope.time.hours,
-	 reg_number : $scope.user.vehicle_no
-       };
-       $http.post( path + '/booking', $httpParamSerializerJQLike(reqObj),{
+
+	   if($scope.newUser.choice == 'S'){
+		   var reqObj = {
+			 user_id : $scope.user._id,
+			 parking_id : $scope.parking._id,
+			 slot_id : $scope.selectedSlot.id,
+			 start_time : start,
+			 hours : $scope.time.hours,
+			 reg_number : $scope.user.vehicle_no
+		   };
+       }
+	   else{
+	       var reqObj = {
+			 user_id : $scope.user._id,
+			 parking_id : $scope.parking._id,
+			 slot_id : $scope.selectedSlot.id,
+			 start_time : start,
+			 hours : $scope.time.hours,
+			 reg_number : $scope.newUser.vehicleReg
+		   };
+	   };
+	   
+	   $http.post( path + '/booking', $httpParamSerializerJQLike(reqObj),{
          headers:{
            'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
          }
@@ -171,6 +191,14 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
             index: index
           };
 
+		  
+		  if($scope.user.vehicle_no != $scope.bookingDetails.manualData.reg_number){
+		      $scope.showOtherBookingFlag = true;
+			  $scope.otherVehicleReg = $scope.bookingDetails.manualData.reg_number;
+		  }else{
+              $scope.showOtherBookingFlag = false;		  
+		  }
+		  
           $http.get(path + '/operator/notify', $httpParamSerializerJQLike(payload)).success(function(res){
 
           }).error(function(err){
@@ -203,7 +231,9 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
     //  $ionicHistory.nextViewOptions({
     //    disableBack: true
     //  });
-     $state.go('menu.home',null, {reload: true});
+     //$state.go('menu.home',null, {reload: true});
+	   $state.go('menu.home');
+	   $window.location.reload();
    };
 
    $scope.$watch('time', function(newTime, oldTime){
@@ -213,7 +243,7 @@ app.controller('SlotBookingController', function($scope, $filter, $state, $http,
         $scope.selectedSlot.id = '';
         $scope.parking = response;
       }).error(function(response){
-        alert(JSON.stringify(response));
+        //alert(JSON.stringify(response));
       });
    }, true);
 

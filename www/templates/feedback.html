@@ -19,12 +19,12 @@
 	   <div class="list card" style="margin-top : 2vw;">
 			  <label class="item item-input item-stacked-label">
 				<span class="input-label">Your feedback</span>
-				<textarea type="text" placeholder="Write us what you feel here" style="min-height: 10em;" ng-model="feedback.userText">
+				<textarea type="text" placeholder="Write us what you feel here" style="min-height: 10em;" ng-model="feedback.userText"></textarea>
 			  </label>
        </div>
 	   
-	   <div style="text-align : center;">
-	       <button class="button button-medium button-positive">
+	    <div style="text-align : center;">
+	       <button class="button button-medium button-positive" ng-click="submitFeedback();">
               <i class="icon ion-android-contacts" style="margin-right : 5px;"></i>Submit your feedback
            </button>
 	   </div>

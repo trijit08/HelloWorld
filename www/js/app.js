@@ -24,6 +24,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       auth: function(StorageService, UserService, $q){
         var d = $q.defer();
         var user = StorageService.get();
+        //alert(JSON.stringify(user));
         if(!angular.equals(user, {})){
             UserService.setUser(user);
             d.resolve();
@@ -34,7 +35,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       },
       parkings : function(LocationService){
         return LocationService.getParkingArr().then(function(response){
-          //console.log(response);
+          console.log(response);
           return response;
         }, function(error){
           return null;
@@ -48,9 +49,6 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       'menuContent': {
         templateUrl: 'templates/map.html',
         controller: 'IndexController',
-	onEnter: function(){
-		alert('Map entered');
-	}
       }
     }
   })

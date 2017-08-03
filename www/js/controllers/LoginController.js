@@ -11,7 +11,6 @@ app.controller('LoginController',function($scope, StorageService, UserService, $
 			  if(response.status === 200){
   				$scope.user = response.data;
   				$scope.user.isLoggedIn = true;
-				UserService.setUser($scope.user);
   				StorageService.add($scope.user);
           // register device for push notification
           $ionicPush.register().then(function(t){

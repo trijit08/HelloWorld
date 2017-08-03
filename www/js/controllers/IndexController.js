@@ -2,7 +2,7 @@ var app = angular.module('starter');
 
 app.controller('IndexController', function($scope, $state, $cordovaGeolocation, $http, $ionicModal, $ionicHistory, LocationService){
 
-  $ionicHistory.clearHistory();
+ // $ionicHistory.clearHistory();
   /*socket.io  start*/
     // var socket = io.connect("https://arupepark.herokuapp.com");
     // socket.on('test', function(data){

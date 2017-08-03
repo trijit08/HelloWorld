@@ -25,10 +25,10 @@ app.controller('LoginController',function($scope, StorageService, UserService, $
           });
           $state.go('menu.home',null, {location: 'replace'});
 			  }else{
-				      alert(response.data);
+				      //alert(response.data);
 			  }
 			},function(errResponse){
-			    alert(JSON.stringify(errResponse));
+			    //alert(JSON.stringify(errResponse));
 			});
 	 };
 });

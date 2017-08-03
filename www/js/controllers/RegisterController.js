@@ -27,7 +27,7 @@ app.controller('RegisterController',function($scope, StorageService, UserService
   					$state.go('menu.home',null, {location: 'replace'});
 				  }
 			  },function(errResponse){
-			  alert(JSON.stringify(errResponse));
+			  //alert(JSON.stringify(errResponse));
 		 });
 	 };
 });

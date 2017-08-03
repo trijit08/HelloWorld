@@ -26,6 +26,11 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializ
     latlng : new google.maps.LatLng(22.5726, 88.3639)
   };
 
+	$scope.updateProfile() = function(){
+		UserService.updateProfile($scope.reg).success(function(response){
+			$scope.user = response;
+		});
+	};
 
   /******************************************* USER LOGIN CHECK START ************************************/
   // if($scope.user.name != "" && $scope.user.password != "" && $scope.user.phone != "" && $scope.user.vehicle_no != ""){

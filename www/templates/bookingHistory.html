@@ -23,16 +23,17 @@
 						<ul>
 						   <li><span style="font-weight : 500;">Booking Start Time :</span> {{booking.start_time <= 12 ? booking.start_time : booking.start_time - 12}} {{booking.start_time <= 12 ? 'AM' : 'PM'}}</li>
 						   <li><span style="font-weight : 500;">Booking End Time :</span> {{booking.start_time+booking.hours <= 12 ? booking.start_time+booking.hours : booking.start_time++booking.hours - 12}} {{booking.start_time+booking.hours <= 12 ? 'AM' : 'PM'}}</li>
-						   <li><span style="font-weight : 500;">Booking Span :</span>{{booking.hours}} Hours</li>
+						   <li><span style="font-weight : 500;">Booking Span :</span>{{booking.hours}} Hour(s)</li>
 						   <li style="margin-top : 2vw;"><span style="font-weight : 500;">Charge :</span> <span style="font-size: 5vw; font-weight: 500; color: brown;">₹ {{booking.parking_id.hourly_price * booking.hours}}</span></li>
 						   <li ng-if="booking.status == 'pending'" style="margin-top : 2vw;"><span style="font-weight : 500;">Your OTP :</span> <span style="font-size: 5vw; font-weight: 500; color: green;">{{booking.otp.value}}</span></li>
+						   <li ng-if="booking.status == 'booked'" style="margin-top : 2vw;"><span style="font-size: 4vw; font-weight: 500; color: green;">ON-GOING BOOKING</span></li>
 						</ul>
 
 						<!--<div style="float : right;">Status : <span style="font-size : 20px; color : green;">{{booking.status}}</span></div>-->
 						<img ng-if="booking.status == 'pending'" src="img/pending.png" style="float : right; width: 28%; margin-top: -10vw;"/>
 						<img ng-if="booking.status == 'completed'" src="img/completed.png" style="float : right; width: 32%; margin-top: -14vw;"/>
 						<img ng-if="booking.status == 'cancelled'" src="img/cancel.png" style="float : right; width: 28%; margin-top: -10vw;"/>
-						<img ng-if="booking.status == 'booked'" src="img/completed.png" style="float : right; width: 32%; margin-top: -14vw;"/>
+						<img ng-if="booking.status == 'booked'" src="img/booked.png" style="float : right; width: 31%; margin-top: -24vw;"/>
 						
 						<div ng-if="booking.status == 'pending'" style="text-align : center; margin-top: 6vw;">
 						     <button class="button button-medium button-royal" ng-click="cancelBooking(booking._id);">

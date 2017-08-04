@@ -1,12 +1,15 @@
 var app = angular.module('starter');
 
-app.controller('LoginController',function($scope, StorageService, UserService, $ionicPush, $state){
+app.controller('LoginController',function($scope, StorageService, UserService, $ionicPush, $state, $ionicLoading){
      $scope.loginDetails = {
 	      phone : "",
 		    pwd : ""
 	   };
 
 	 $scope.userLogin = function(){
+     $ionicLoading.show({
+       template: 'Getting user details...'
+     });
 	     UserService.doLogin($scope.loginDetails).then(function(response){
 			  if(response.status === 200){
   				$scope.user = response.data;
@@ -22,7 +25,9 @@ app.controller('LoginController',function($scope, StorageService, UserService, $
               console.log(err);
             });
           });
-          $state.go('menu.home',null, {location: 'replace'});
+          $ionicLoading.hide();
+          $state.go('menu.home');
+          $window.location.reload();
 			  }else{
 				      //alert(response.data);
 			  }

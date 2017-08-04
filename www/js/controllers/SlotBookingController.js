@@ -1,12 +1,12 @@
 var app = angular.module('starter');
 
-app.controller('SlotBookingController', function($scope, $window, $filter, $state, $http, $ionicHistory, $ionicModal, $httpParamSerializerJQLike, LocationService){
-   
+app.controller('SlotBookingController', function($scope, $window, $filter, $state, $http, $ionicHistory, $ionicModal, $httpParamSerializerJQLike, LocationService, $ionicLoading){
+
    $scope.newUser = {
       choice : "",
       vehicleReg : ""
    };
-   
+
   //  socket.on('booked', fucntion(data){
 	//     console.log(data);
   //  });
@@ -141,8 +141,11 @@ app.controller('SlotBookingController', function($scope, $window, $filter, $stat
    };
 
    $scope.bookParking = function(){
+     $ionicLoading.show({
+       template: 'Booking your parking ...'
+     });
      console.log($scope.selectedSlot.id);
-	
+
      if($scope.selectedSlot.id !== ''){
        var start = $scope.time.start;
 
@@ -166,7 +169,7 @@ app.controller('SlotBookingController', function($scope, $window, $filter, $stat
 			 reg_number : $scope.newUser.vehicleReg
 		   };
 	   };
-	   
+
 	   $http.post( path + '/booking', $httpParamSerializerJQLike(reqObj),{
          headers:{
            'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
@@ -176,7 +179,7 @@ app.controller('SlotBookingController', function($scope, $window, $filter, $stat
           $scope.bookingDetails.slot = $scope.getIndex($scope.bookingDetails.slot_id);
   	      $scope.formattedDate = $scope.changeDateFormat($scope.bookingDetails.date);
   	      $scope.formattedTime = $scope.changeTimeFormat($scope.bookingDetails.start_time);
-
+          $ionicLoading.hide();
           $scope.bookSuccessModal.show();
 
           var start = $scope.time.start <= 12 ? $scope.time.start : $scope.time.start - 12;
@@ -191,14 +194,14 @@ app.controller('SlotBookingController', function($scope, $window, $filter, $stat
             index: index
           };
 
-		  
+
 		  if($scope.user.vehicle_no != $scope.bookingDetails.manualData.reg_number){
 		      $scope.showOtherBookingFlag = true;
 			  $scope.otherVehicleReg = $scope.bookingDetails.manualData.reg_number;
 		  }else{
-              $scope.showOtherBookingFlag = false;		  
+              $scope.showOtherBookingFlag = false;
 		  }
-		  
+
           $http.get(path + '/operator/notify', $httpParamSerializerJQLike(payload)).success(function(res){
 
           }).error(function(err){

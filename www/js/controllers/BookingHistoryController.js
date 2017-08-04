@@ -1,6 +1,9 @@
 var app = angular.module('starter');
 
-app.controller('BookingHistoryController', function($scope, UserService, $http, $window){
+app.controller('BookingHistoryController', function($scope, UserService, $http, $window, $ionicLoading){
+		$ionicLoading.show({
+			template: 'Getting your booking history'
+		});
 		  $scope.bookingHistory = UserService.getBookingHistory();
 		  $scope.user = UserService.getUser();
 		  var url = UserService.getUrl();
@@ -8,9 +11,12 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 		  $http.get(url+ '/booking/user/' + $scope.user._id).success(function(response){
 			$scope.bookingHistory = response;
 			for(var i=0; i<$scope.bookingHistory.length; i++){
-			  $scope.bookingHistory[i].formatDate = $scope.formatDate($scope.bookingHistory[i].date.toString());  
+			  $scope.bookingHistory[i].formatDate = $scope.formatDate($scope.bookingHistory[i].date.toString());
 			}
+			$ionicLoading.hide();
 		  });
+
+
 
 		  // console.log($scope.bookingHistory);
 
@@ -28,8 +34,8 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 
 			return day + ' ' + monthNames[monthIndex] + ' ' + year;
 		  };
-          
-		  
+
+
 		  $scope.cancelBooking = function(bookingID){
 		      $http({
 					method : 'PUT',
@@ -48,6 +54,6 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 					 //alert("Failed");
 					 //alert(JSON.stringify(response));
 					 sweetAlert("Oops...", "This booking couldn't be cancelled", "error");
-				}); 
+				});
 		  };
 });

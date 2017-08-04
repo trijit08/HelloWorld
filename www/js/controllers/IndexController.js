@@ -1,7 +1,9 @@
 var app = angular.module('starter');
 
-app.controller('IndexController', function($scope, $state, $cordovaGeolocation, $http, $ionicModal, $ionicHistory, LocationService){
-
+app.controller('IndexController', function($scope, $state, $cordovaGeolocation, $http, $ionicModal, $ionicHistory, LocationService, $ionicLoading){
+  $ionicLoading.show({
+    template: 'Getting your location...'
+  });
   $ionicHistory.clearHistory();
   /*socket.io  start*/
     // var socket = io.connect("https://arupepark.herokuapp.com");
@@ -180,6 +182,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
           }
         }
       });
+      $ionicLoading.hide();
     });
   }, function(error){
     console.log("Could not get location");

@@ -88,15 +88,15 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
       }
     }
   })
-  .state('menu.chat',{
-    url: '/chat',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/chat.html',
-		controller: 'ChatController'
-      }
-    }
-  })
+  // .state('menu.chat',{
+  //   url: '/chat',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/chat.html',
+	// 	controller: 'ChatController'
+  //     }
+  //   }
+  // })
   .state('menu.feedback',{
     url: '/feedback',
     views: {

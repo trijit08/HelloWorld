@@ -30,25 +30,8 @@
   </div>
 </div>
 -->
-          <div class="card">
-				  <div class="item item-divider" style="text-align : center;">
-					  Whom is this Booking for?
-				  </div>
-				  <div class="item item-text-wrap" style="padding : 0px !important;">
-						 <ion-list>
-							  <ion-radio ng-model="newUser.choice" ng-value="'S'">For myself only</ion-radio>
-							  <ion-radio ng-model="newUser.choice" ng-value="'O'">For someone else</ion-radio>
-                         </ion-list>					  
-				  </div>
-		  </div>		  
-		 
-		  <div ng-if="newUser.choice == 'O'" class="list card" style="margin-top : 2vw;">
-			  <label class="item item-input item-stacked-label">
-				<span class="input-label">Other Person's Vehicle Registration</span>
-				<input type="text" placeholder="WB-XXX-XXXX" ng-model="newUser.vehicleReg">
-			  </label>
-         </div>
-           
+
+
 		   <div class="list card">
 					  <div class="item item-divider" style="text-align : center;">
 						  Choose your booking time
@@ -144,6 +127,24 @@
 				   </ol>
 			  </div>
 			</div>
+      <div class="card">
+      <div class="item item-divider" style="text-align : center;">
+        Whom is this Booking for?
+      </div>
+      <div class="item item-text-wrap" style="padding : 0px !important;">
+         <ion-list>
+            <ion-radio ng-model="newUser.choice" ng-value="'S'">For myself only</ion-radio>
+            <ion-radio ng-model="newUser.choice" ng-value="'O'">For someone else</ion-radio>
+                     </ion-list>
+      </div>
+  </div>
+
+  <div ng-if="newUser.choice == 'O'" class="list card" style="margin-top : 2vw;">
+    <label class="item item-input item-stacked-label">
+    <span class="input-label">Other Person's Vehicle Registration</span>
+    <input type="text" placeholder="WB-XXX-XXXX" ng-model="newUser.vehicleReg">
+    </label>
+     </div>
 
 			<div style="text-align : center; margin-bottom : 2em;">
 			   <button class="button button-medium button-balanced" ng-click="bookParking()">

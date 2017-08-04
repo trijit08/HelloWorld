@@ -107,6 +107,14 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
     );
   };
 
+  $scope.nav = function(){
+    console.log($scope.currentLocation);
+    var url='http://maps.google.com/maps?saddr='+$scope.lat+','+ $scope.lng +'&daddr='+$scope.selectedParking.lat + ',' +
+              $scope.selectedParking.lng;
+    window.open(url, '_system', 'location=yes');
+    return false;
+  };
+
   $scope.bookNow = function(){
     // $scope.parkings[$scope.selectedIndex].isSelected = true;
     LocationService.setParking($scope.parkings[$scope.selectedIndex]);
@@ -163,6 +171,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
 
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
     //alert(JSON.stringify(position));
+    $scope.lat = position.coords.latitude;
+    $scope.lng = position.coords.longitude;
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     $scope.currentLocation.latlng = latlng;
     $scope.map.setCenter($scope.currentLocation.latlng);

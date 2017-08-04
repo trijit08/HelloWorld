@@ -185,6 +185,7 @@ app.controller('SlotBookingController', function($scope, $window, $filter, $stat
           var start = $scope.time.start <= 12 ? $scope.time.start : $scope.time.start - 12;
           var ampm = $scope.time.start <= 12 ? 'am' : 'pm';
           var index = $scope.bookingDetails.slot;
+
           var payload = {
             parking_id: $scope.parking._id,
             reg_number: $scope.user.vehicle_no,
@@ -202,7 +203,11 @@ app.controller('SlotBookingController', function($scope, $window, $filter, $stat
               $scope.showOtherBookingFlag = false;
 		  }
 
-          $http.get(path + '/operator/notify', $httpParamSerializerJQLike(payload)).success(function(res){
+          $http.post(path + '/operator/notify', $httpParamSerializerJQLike(payload),{
+              headers:{
+                'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+              }
+            }).success(function(res){
 
           }).error(function(err){
             console.log("Cannot notify operator");

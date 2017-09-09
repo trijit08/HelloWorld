@@ -1,37 +1,5 @@
 <ion-view view-title="Pick your Parking Slot">
  <ion-content>
-<!--
-<div class="card" class="bookPref">
-  <div class="item item-divider">
-    At what time?
-  </div>
-  <div class="item">
-    <button class="button" ng-click="dcrStartTime()">
-      <i class="icon ion-minus"></i>
-    </button>
-    {{ time.start > 12 ? time.start-12 : time.start }}
-    <button class="button" ng-click="incStartTime()">
-      <i class="icon ion-plus"></i>
-    </button>
-    {{ time.am ? 'AM' : 'PM' }}
-    <button class="button" ng-click="time.am = !time.am">
-      <i class="icon ion-arrow-swap"></i>
-    </button>
-  </div>
-  <div class="item item-divider">
-    Hours:
-    <button class="button" ng-click="time.hours = time.hours == 1 ? 1 : time.hours - 1">
-      <i class="icon ion-minus"></i>
-    </button>
-    {{ time.hours }}
-    <button class="button" ng-click="time.hours = (time.start + time.hours) == parking.opening_hours.end ? time.hours : time.hours + 1">
-      <i class="icon ion-plus"></i>
-    </button>
-  </div>
-</div>
--->
-
-
 		   <div class="list card">
 					  <div class="item item-divider" style="text-align : center;">
 						  Choose your booking time
@@ -147,7 +115,7 @@
      </div>
 
 			<div style="text-align : center; margin-bottom : 2em;">
-			   <button class="button button-medium button-balanced" ng-click="bookParking()">
+			   <button class="button button-medium button-royal" ng-click="bookParking()">
 					<i class="icon ion-clock" style="margin-right : 5px;"></i>Confirm Your Slot
 			  </button>
 			</div>

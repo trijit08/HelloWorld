@@ -1,11 +1,11 @@
 <ion-bottom-sheet-view>
-  <ion-header-bar align-title="left" class="bar-positive">
+  <ion-header-bar align-title="left" class="bar-dark">
     <h1 class="title">{{selectedParking.name}}</h1>
     <div class="buttons">
       <button class="button button-icon icon ion-close-circled" ng-click="parkingInfoModal.hide()"></button>
     </div>
   </ion-header-bar>
-  <ion-content>
+  <ion-content style="background-image : url('img/mbg.jpg'); background-repeat: round;">
 		<div class="list card">
 		  <div class="item item-divider">
 			     {{selectedParking.number_of_slot - selectedParking.booked_slot}} slots available
@@ -30,8 +30,8 @@
   </ion-content>
   <ion-footer-bar>
     <div class="button-bar">
-      <button class="button button-medium button-positive" style="font-size:16px; font-weight: 500; margin-right:10px;" ng-click="nav()">Navigate</button>
-      <button class="button button-medium button-balanced" ng-click="bookNow()"><span style="font-size: 16px;font-weight: 500;">Book Now</span></button>
+      <button class="button button-medium button-royal" style="font-size:16px; font-weight: 500; margin-right:10px; border-radius: 6px;" ng-click="nav()">Navigate</button>
+      <button class="button button-medium button-calm" style="border-radius: 6px;" ng-click="bookNow()"><span style="font-size: 16px;font-weight: 500;">Book Now</span></button>
     </div>
   </ion-footer-bar>
 </ion-bottom-sheet-view>

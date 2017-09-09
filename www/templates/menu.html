@@ -16,18 +16,18 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable" align-title="center">
-      <h1 class="title">ePark Menu</h1>
+    <ion-header-bar class="bar-dark" align-title="center">
+      <h1 class="title" style="color : white;">ePark Menu</h1>
     </ion-header-bar>
     <ion-content>
-	   <div style="text-align : center; margin-top : 5vw; margin-bottom : 4vw;">
-	           <img class="image_Profile" src="img/user.png"/>
+	   <div style="text-align : center; background-image : url('img/bg1.jpeg'); background-repeat: round; height : 53vw;">
+	           <img class="image_Profile" src="img/user.png" style="margin-top : 5vw;"/>
 			   <div style="text-align : center;">
-					<h4>{{ user.name }}</h4>
+					<h4 style="color: white;">{{ user.name }}</h4>
 				</div>
 				<div style="text-align : center;">
-					<h5 style="font-weight : 400;">{{ user.email }}</h5>
-					<h5 style="font-weight : 400; margin-top: -6px;">{{ user.vehicle_no }}</h5>
+					<h5 style="color: white; font-weight : 400;">{{ user.email }}</h5>
+					<h5 style="color: white; font-weight : 400; margin-top: -6px;">{{ user.vehicle_no }}</h5>
 				</div>
 		</div>
 

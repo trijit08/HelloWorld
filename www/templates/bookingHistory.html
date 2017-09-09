@@ -1,6 +1,5 @@
 <ion-view view-title="Your Booking History">
-   <ion-content style="background-color: #d3d3d3;">
-       
+   <ion-content style="background-image : url('img/mbg.jpg'); background-repeat: round;">
          <div class="card" ng-hide="bookingHistory.length">
 			  <div class="item item-divider" style="text-align : center;">
 				 Oops! Nothing to show here
@@ -11,10 +10,10 @@
 		 </div>	  
        
        <div class="list card" ng-repeat="booking in bookingHistory">
-			  <div class="item item-avatar">
+			  <div class="item item-avatar" style="background-color: darkslategray;">
 				<img src="img/history.png">
-				<h2>{{booking.formatDate}}</h2>
-				<p style="font-size : 15px;">{{booking.parking_id.name}}</p>
+				<h2 style="color : white;">{{booking.formatDate}}</h2>
+				<p style="font-size : 15px; color : white;">{{booking.parking_id.name}}</p>
 
 			  </div>
 
@@ -36,8 +35,8 @@
 						<img ng-if="booking.status == 'booked'" src="img/booked.png" style="float : right; width: 31%; margin-top: -24vw;"/>
 						
 						<div ng-if="booking.status == 'pending'" style="text-align : center; margin-top: 6vw;">
-						     <button class="button button-medium button-royal" ng-click="cancelBooking(booking._id);">
-							     <i class="icon ion-close-circled" style="margin-right : 5px;"></i>Cancel Booking
+						     <button class="button button-medium button-calm" ng-click="cancelBooking(booking._id);">
+							     <!--<i class="icon ion-close-circled" style="margin-right : 5px;"></i>-->Cancel Booking
 							 </button>
 						</div>
 			 </div>

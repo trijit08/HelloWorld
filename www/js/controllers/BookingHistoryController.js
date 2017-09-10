@@ -56,4 +56,21 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 					 sweetAlert("Oops...", "This booking couldn't be cancelled", "error");
 				});
 		  };
+
+			$scope.doRefresh = function(){
+				$ionicLoading.show({
+					template: 'Getting your booking history'
+				});
+				$http.get(url+ '/booking/user/' + $scope.user._id).success(function(response){
+				$scope.bookingHistory = response;
+				for(var i=0; i<$scope.bookingHistory.length; i++){
+				  $scope.bookingHistory[i].formatDate = $scope.formatDate($scope.bookingHistory[i].date.toString());
+				}
+				$ionicLoading.hide();
+			  })
+				.finally(function() {
+		       // Stop the ion-refresher from spinning
+		       $scope.$broadcast('scroll.refreshComplete');
+		     });
+			};
 });

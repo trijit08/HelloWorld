@@ -1,14 +1,15 @@
 <ion-view view-title="Your Booking History">
    <ion-content style="background-image : url('img/mbg.jpg'); background-repeat: round;">
-         <div class="card" ng-hide="bookingHistory.length">
+      <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
+      <div class="card" ng-hide="bookingHistory.length">
 			  <div class="item item-divider" style="text-align : center;">
 				 Oops! Nothing to show here
 			  </div>
 			  <div class="item item-text-wrap" style="text-align : center;">
-				Well apparently, you do not have any Bookings till date with ePark. All your present and past bookings are meant to be shown here. It's ok, start booking and enjoy a hassle free parking experience. 
+				Well apparently, you do not have any Bookings till date with ePark. All your present and past bookings are meant to be shown here. It's ok, start booking and enjoy a hassle free parking experience.
 			  </div>
-		 </div>	  
-       
+		 </div>
+
        <div class="list card" ng-repeat="booking in bookingHistory">
 			  <div class="item item-avatar" style="background-color: darkslategray;">
 				<img src="img/history.png">
@@ -33,7 +34,7 @@
 						<img ng-if="booking.status == 'completed'" src="img/completed.png" style="float : right; width: 32%; margin-top: -14vw;"/>
 						<img ng-if="booking.status == 'cancelled'" src="img/cancel.png" style="float : right; width: 28%; margin-top: -10vw;"/>
 						<img ng-if="booking.status == 'booked'" src="img/booked.png" style="float : right; width: 31%; margin-top: -24vw;"/>
-						
+
 						<div ng-if="booking.status == 'pending'" style="text-align : center; margin-top: 6vw;">
 						     <button class="button button-medium button-calm" ng-click="cancelBooking(booking._id);">
 							     <!--<i class="icon ion-close-circled" style="margin-right : 5px;"></i>-->Cancel Booking

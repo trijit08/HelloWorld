@@ -195,6 +195,6 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
       $ionicLoading.hide();
     });
   }, function(error){
-    console.log("Could not get location");
+    console.log("Could not get location", error);
   });
 });

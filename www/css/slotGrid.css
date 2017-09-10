@@ -73,7 +73,7 @@ ol {
 
 
 .seat input[type=radio]:disabled + label:after {
-  content: "X";
+  /*content: "X";*/
   text-indent: 0;
   position: absolute;
   top: 4px;
@@ -113,7 +113,7 @@ ol {
 }
 .seat label:hover {
   cursor: pointer;
-  box-shadow: 0 0 0px 2px #5C6AFF;
+  /*box-shadow: 0 0 0px 2px #5C6AFF;*/
 }
 
 @-webkit-keyframes rubberBand {

@@ -246,12 +246,17 @@ app.controller('SlotBookingController', function($scope, $window, $filter, $stat
 
    $scope.$watch('time', function(newTime, oldTime){
      var start_time = newTime.start;
+     $ionicLoading.show({
+ 			template: 'refreshing..'
+ 		 });
      $http.get(path + '/location/' + $scope.parking._id + '/' + start_time + '/' + newTime.hours)
       .success(function(response){
         $scope.selectedSlot.id = '';
         $scope.parking = response;
+        $ionicLoading.hide();
       }).error(function(response){
         //alert(JSON.stringify(response));
+        $ionicLoading.hide();
       });
    }, true);
 

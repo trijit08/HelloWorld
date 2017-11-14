@@ -1,6 +1,6 @@
 var app = angular.module('starter');
 
-app.controller('LoginController',function($scope, StorageService, UserService, $ionicPush, $state, $ionicLoading){
+app.controller('LoginController',function($scope, StorageService, UserService, $ionicPush, $state, $ionicLoading, $window){
      $scope.loginDetails = {
 	      phone : "",
 		    pwd : ""

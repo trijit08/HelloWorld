@@ -2,23 +2,23 @@
   <ion-content style="background-image : url('img/mbg2.png'); background-repeat: round;">
 	 <div class="card">
 		  <div class="item item-divider" style="text-align : center; background-color: darkslategray; color: white;">
-			  Your ePark Profile
+			  Your ePark QR code
 		  </div>
 		  <div class="item item-text-wrap" style="text-align : center;">
-			  Hey, {{reguser.name}} this is your ePark Account Profile. Do however check your details cause your bookings depend on them. But even if they are wrong, relax! Just update the data (except Name and User ID) by typing on it and tap on the Update button below.
+        <qr type-number="8" correction-level="'M'" size="200" input-mode="ALPHA_NUM" text="reguser._id" image="true"></qr>
 		  </div>
-	 </div>	  
-	
+	 </div>
+
 	 <div style="text-align : center;">
 	           <img class="image_Profile" src="img/account.png"/>
 			   <div style="text-align : center;">
 					<h4 style="color : white;">{{ reguser.name }}</h4>
 				</div>
-				<div style="text-align : center;">
+				<!-- <div style="text-align : center;">
 					<h5 style="font-weight : 400; color : white;">User ID : <span style="font-weight : 500;">{{ reguser._id }}</span></h5>
-				</div>
+				</div> -->
 	</div>
-	
+
 	<div class="list card">
 		  <label class="item item-input item-stacked-label">
 			<span class="input-label" style="font-weight : 500;">Your Contact Number</span>
@@ -33,7 +33,7 @@
 			<input type="text" ng-model="reguser.email">
 		  </label>
     </div>
-	
+
 	<div style="text-align : center; margin-bottom : 3em;">
 	     <button class="button button-medium button-positive" ng-click="updateProfile()">
                <i class="icon ion-edit" style="margin-right : 5px;"></i>Update details

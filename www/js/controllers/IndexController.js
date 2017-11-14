@@ -109,8 +109,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
 
   $scope.nav = function(){
     console.log($scope.currentLocation);
-    var url='http://maps.google.com/maps?saddr='+$scope.lat+','+ $scope.lng +'&daddr='+$scope.selectedParking.lat + ',' +
-              $scope.selectedParking.lng;
+    var url='http://maps.google.com/maps?saddr='+$scope.lat+','+ $scope.lng +'&daddr='+$scope.selectedParking.location.lat + ',' +
+              $scope.selectedParking.location.lng;
     window.open(url, '_system', 'location=yes');
     return false;
   };
@@ -148,7 +148,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
 
   for(var i=0;i<$scope.parkings.length;i++){
     var loc = $scope.parkings[i];
-    var latlng = new google.maps.LatLng(loc.lat, loc.lng);
+    var latlng = new google.maps.LatLng(loc.location.lat, loc.location.lng);
     var marker = new google.maps.Marker({
       position: latlng,
       map: $scope.map,
@@ -163,7 +163,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
         // infoWindow.open($scope.map, $scope.markers[i]);
         $scope.selectedParking = $scope.parkings[i];
         $scope.selectedIndex = i;
-        $scope.getDistance(new google.maps.LatLng($scope.parkings[i].lat, $scope.parkings[i].lng), i);
+        $scope.getDistance(new google.maps.LatLng($scope.parkings[i].location.lat, $scope.parkings[i].location.lng), i);
         $scope.parkingInfoModal.show();
       }
     })($scope.markers[i], i));

@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage'])
+angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage','ja.qr'])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicCloudProvider){
   $ionicCloudProvider.init({

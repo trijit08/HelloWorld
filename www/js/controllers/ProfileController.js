@@ -7,7 +7,7 @@ app.controller('ProfileController', function($scope, UserService, $ionicLoading)
 	console.log($scope.reguser);
 	// console.log($scope.reguser);
 	// $scope.$apply();
-
+	$scope.string = 'Arup Sengupta';
 
 	$scope.updateProfile= function(){
 		$ionicLoading.show({

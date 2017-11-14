@@ -8,13 +8,15 @@
   <ion-content style="background-image : url('img/mbg.jpg'); background-repeat: round;">
 		<div class="list card">
 		  <div class="item item-divider">
-			     {{selectedParking.number_of_slot - selectedParking.booked_slot}} slots available
+			     <i class="icon ion-android-car" style="font-size: 20px;"></i>&nbsp;<span style="color: green; padding-right: 5px;">{{selectedParking.number_of_slot.four}}</span>
+           <i class="icon ion-android-bicycle" style="font-size: 20px;"></i>&nbsp;<span style="color: green">{{selectedParking.number_of_slot.two}}</span>
 		  </div>
 		  <div class="item">
         <h2>Opening Hours</h2>
         <p style="font-size: 16px;color: chocolate;">
           {{selectedParking.opening_hours.start <= 12 ? selectedParking.opening_hours.start + 'am' : (selectedParking.opening_hours.start - 12) + 'pm'}} - {{selectedParking.opening_hours.end <= 12 ? selectedParking.opening_hours.end + 'am' : (selectedParking.opening_hours.end-12) + 'pm'}}
-          <span class="item-note" style="color : green; font-size : 16px;">&#8377;&nbsp;{{selectedParking.hourly_price}}/hour</span>
+          <div class="item-note" style="color : green; font-size : 16px;"><i class="icon ion-android-car" style="font-size: 20px;"></i>&nbsp;&#8377;&nbsp;{{selectedParking.fare.four}}/hour</div>
+          <div class="item-note" style="color : green; font-size : 16px; padding-right:10px;"><i class="icon ion-android-bicycle" style="font-size: 20px;"></i>&nbsp;&#8377;&nbsp;{{selectedParking.fare.two}}/hour</div>
         </p>
 		  </div>
       <div class="item item-divider">

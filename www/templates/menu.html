@@ -18,31 +18,34 @@
     </ion-header-bar>
     -->
 	<ion-content>
-	   <div style="text-align : center; background-image : url('img/bg1.jpeg'); background-repeat: round; height : 53vw;">
-	           <img class="image_Profile" src="img/user.png" style="margin-top : 5vw;"/>
-			   <div style="text-align : center;">
-					<h4 style="color: white;">{{ user.name }}</h4>
+	   <div style="text-align : center; background-image : url('img/bg1.jpeg'); background-repeat: round; height : 38vw;">
+	           <img class="image_Profile" src="img/user.png" style="margin-top:11vw; float: left; margin-left: 4vw;"/>
+			   <div style="float : right;">
+					<h4 style="color: white; margin-right: 5vw; margin-top: 12vw;">{{ user.name }}</h4>
+					<h5 style="color: white; font-weight : 400; font-size : 10px; margin-top : -7px;">{{ user.email }}</h5>
+					<h5 style="color: white; font-weight : 400; margin-top: -6px; margin-top: -8px; font-size: 12px;">{{ user.vehicle_no }}</h5>
 				</div>
+				<!--
 				<div style="text-align : center;">
 					<h5 style="color: white; font-weight : 400;">{{ user.email }}</h5>
 					<h5 style="color: white; font-weight : 400; margin-top: -6px;">{{ user.vehicle_no }}</h5>
-				</div>
+				</div>-->
 		</div>
 
       <ion-list class="list" style="margin-bottom : 3em;">
-			<ion-item menu-close href="#/menu/home">
+			<ion-item menu-close href="#/menu/home" style="border-style:none;">
 				 <a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/home">
 					<i class="icon ion-home"></i>Home
 				</a>
 			</ion-item>
 
-		   <ion-item menu-close href="#/menu/profile">
+		   <ion-item menu-close href="#/menu/profile" style="border-style:none;">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/profile">
 					<i class="icon ion-person"></i>My Profile
 				</a>
 		   </ion-item>
 
-		   <ion-item menu-close href="#/menu/bookingHistory">
+		   <ion-item menu-close href="#/menu/bookingHistory" style="border-style:none;">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/bookingHistory">
 					<i class="icon ion-clipboard"></i>My Booking History
 				</a>
@@ -54,22 +57,24 @@
 				</a>
 		  </ion-item> -->
 
-		  <ion-item menu-close href="#/menu/contacts">
+		  <ion-item menu-close href="#/menu/contacts" style="border-bottom-style: none;">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/contacts">
 					<i class="icon ion-paper-airplane"></i>Emergency Contacts
 			    </a>
 		  </ion-item>
 
-		 <ion-item menu-close href="#/menu/feedback">
+		 <ion-item menu-close href="#/menu/feedback" style="border-style:none;">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/feedback">
 					<i class="icon ion-android-bulb"></i>Your Feedback
 				</a>
 		 </ion-item>
-		 <ion-item menu-close href="#/menu/logout">
+		 <ion-item menu-close href="#/menu/logout" style="border-bottom-style: none;">
 				<a class="item-icon-left" style="padding-left : 10vw; text-decoration : none; color : black;" href="#/menu/logout">
-					<i class="icon ion-log-out"></i>Logout
+					<i class="icon ion-power"></i>Logout
 				</a>
 		 </ion-item>
+		 
+		 <div style="text-align: center; font-size: 9px; bottom: 0px; position: fixed; margin: 12px;">ePark India v1.0.2 stable beta. &copy; Launched in November 2017 </div>
       </ion-list>
     </ion-content>
   </ion-side-menu>

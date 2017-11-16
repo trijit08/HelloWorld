@@ -2,9 +2,8 @@
 
 /* ***************** CSS CLASS FOR THE MENU IMAGE START ********************** */
 .image_Profile{
-    height: 24vw;
-    width: 24vw;
-    border: 2px solid #fff;
+    height: 14vw;
+    width: 14vw;
     border-radius: 50%;
     box-shadow: 0 0 5px gray;
     display: inline-block;
@@ -42,7 +41,7 @@
   min-height: initial;
   top: initial;
   /*height: 50%;*/
-  height: 50%;
+  height: 55%;
   border-width: 1px;
   border-style: solid;
 }

@@ -2,23 +2,30 @@ var app = angular.module('starter');
 
 app.controller('IndexController', function($scope, $state, $cordovaGeolocation, $http, $ionicModal, $ionicHistory, LocationService, $ionicLoading){
   $ionicLoading.show({
-    template: 'Getting your location...'
+    template: 'Getting parking location...'
   });
   $ionicHistory.clearHistory();
   /*socket.io  start*/
-    // var socket = io.connect("https://arupepark.herokuapp.com");
-    // socket.on('test', function(data){
-    //   alert(JSON.stringify(data));
-    //   socket.emit('other event', {my : data});
-    //   alert($scope.markers[0]);
-    //   // var icon = {
-    //   //   url : 'img/ionic-black.png',
-    //   //   scaledSize : new google.maps.Size(50,50),
-    //   //   origin : new google.maps.Point(0,0),
-    //   //   anchor : new google.maps.Point(0,0)
-    //   // };
-    //   // $scope.markers[0].setIcon(icon);
-    // });
+    var socket = io.connect("https://arupepark.herokuapp.com");
+    socket.on('device', function(data){
+      // alert(JSON.stringify(data));
+      // socket.emit('other event', {my : data});
+      // alert($scope.markers[0]);
+      // var icon = {
+      //   url : 'img/ionic-black.png',
+      //   scaledSize : new google.maps.Size(50,50),
+      //   origin : new google.maps.Point(0,0),
+      //   anchor : new google.maps.Point(0,0)
+      // };
+      // $scope.markers[0].setIcon(icon);
+      if(data.value){
+        $scope.selectedParking.number_of_slot.four = $scope.selectedParking.number_of_slot.four - 1;
+      }else{
+        $scope.selectedParking.number_of_slot.four = $scope.selectedParking.number_of_slot.four + 1;
+      }
+      $scope.$apply();
+      console.log(data);
+    });
    /* socket.io end */
 
   $scope.search = {};
@@ -163,7 +170,9 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
         // infoWindow.open($scope.map, $scope.markers[i]);
         $scope.selectedParking = $scope.parkings[i];
         $scope.selectedIndex = i;
-        $scope.getDistance(new google.maps.LatLng($scope.parkings[i].location.lat, $scope.parkings[i].location.lng), i);
+        //get distance from device location
+        $scope.getDistance(new google.maps.LatLng($scope.lat, $scope.lng), i);
+        //$scope.getDistance(new google.maps.LatLng($scope.parkings[i].location.lat, $scope.parkings[i].location.lng), i);
         $scope.parkingInfoModal.show();
       }
     })($scope.markers[i], i));
@@ -175,6 +184,10 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
     $scope.lng = position.coords.longitude;
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     $scope.currentLocation.latlng = latlng;
+
+    //hard code ps stijan tech park
+    $scope.currentLocation.latlng = new google.maps.LatLng($scope.parkings[0].location.lat, $scope.parkings[0].location.lng);
+
     $scope.map.setCenter($scope.currentLocation.latlng);
     google.maps.event.addListenerOnce($scope.map, 'idle', function(){
       $scope.marker = new google.maps.Marker({

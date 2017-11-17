@@ -8,25 +8,25 @@
   <ion-content style="background-image : url('img/mbg.jpg'); background-repeat: round;">
        <div class="list card">
                   <div class="item item-divider" style="text-align : center;">
-					Operating Hours : <span style="color : darkred; font-size : 20px;">{{selectedParking.opening_hours.start <= 12 ? selectedParking.opening_hours.start + 'am' : (selectedParking.opening_hours.start - 12) + 'pm'}} - {{selectedParking.opening_hours.end <= 12 ? selectedParking.opening_hours.end + 'am' : (selectedParking.opening_hours.end-12) + 'pm'}}</span>
+					Operating Hours : <span style="color : black; font-size : 16px;">{{selectedParking.opening_hours.start <= 12 ? selectedParking.opening_hours.start + 'am' : (selectedParking.opening_hours.start - 12) + 'pm'}} - {{selectedParking.opening_hours.end <= 12 ? selectedParking.opening_hours.end + 'am' : (selectedParking.opening_hours.end-12) + 'pm'}}</span>
 				  </div>
-	   
+
 				  <div class="item item-icon-left">
 					<i class="icon ion-android-bicycle"></i>
-					 2-wheeler : <span style="font-weight : 600; font-size: 24px;">{{selectedParking.number_of_slot.two}}</span> <span style="font-weight : 600;">slots</span> at <span style="color : green; font-size: 22px;font-weight: 600;">₹{{selectedParking.fare.two}}</span>/hour
+					 <span style="font-size: 18px;">{{selectedParking.number_of_slot.two}}</span> <span style="">slots available</span><span style="color : green; font-size: 16px; float: right; font-weight: bold;">₹{{selectedParking.fare.two}}/hour</span>
 				  </div>
 
 				  <div href="#" class="item item-icon-left">
 					<i class="icon ion-android-car"></i>
-					 4-wheeler : <span style="font-weight : 600; font-size: 24px;">{{selectedParking.number_of_slot.four}}</span> <span style="font-weight : 600;">slots</span> at <span style="color : green; font-size: 22px;font-weight: 600;">₹{{selectedParking.fare.four}}</span>/hour
+					 <span style="font-size: 18px;">{{selectedParking.number_of_slot.four}}</span> <span style="">slots available</span><span style="color : green; font-size: 16px; float: right; font-weight: bold;">₹{{selectedParking.fare.four}}/hour</span>
 				  </div>
-				  
+
 				  <div href="#" class="item item-icon-left" style="white-space : normal;">
 					<i class="icon ion-android-pin"></i>
-					  Approximately <span style="font-weight: bold; font-size: 18px;">{{selectedParking.distance}}</span> (around {{selectedParking.duration}}) from your searched location
+					  <span style="font-weight: bold; font-size: 16px;">{{selectedParking.distance}}</span> (around {{selectedParking.duration}}) from your device location
 				  </div>
        </div>
-	
+
 		<!--
 		<div class="list card">
 		  <div class="item item-divider">

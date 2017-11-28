@@ -1,17 +1,19 @@
-<ion-view hide-nav-bar="true" style="background-image : url('img/background.jpg'); background-repeat: round;">
+<ion-view hide-nav-bar="true" style="background-image : url('img/bg.jpg'); background-repeat: round;">
    <ion-content>
-       <div style="text-align : center;">
-	       <img src="img/Logo.png" style="width : 42%"/>
+       <div style="text-align : center; padding-top: 6em; padding-bottom: 3em;">
+	       <img src="img/icon.png" style="width : 14%"/>
+		   <div style="font-weight : 600; font-size : 4.5em; color : white; font-family: Segoe UI; padding-top: 18px;">ePark</div>
+		   <div style="color : white; padding-top: 29px;">Bengal's newest Smart Parking mobile app</div>
 	   </div>
 
-        <div class="list card" style="margin-top : 2vw;">
+        <div class="list card" style="margin-top : 2vw; border-radius: 12px;">
 			  <label class="item item-input item-stacked-label">
 				<span class="input-label">Mobile Number</span>
 				<input type="number" placeholder="+91 1234567890" ng-model="loginDetails.phone">
 			  </label>
        </div>
 
-	   <div class="list card">
+	   <div class="list card" style="border-radius: 12px;">
 	       <label class="item item-input item-stacked-label">
 				<span class="input-label">Your Password</span>
 				<input type="password" placeholder="*************" ng-model="loginDetails.pwd">
@@ -19,11 +21,18 @@
 	   </div>
 
 	   <div style="text-align : center;">
-	      <button class="button button-medium button-assertive" ng-click="userLogin()"><i class="icon ion-paper-airplane" style="margin-right : 5px;"></i>Login to ePark</button>
+	      <button style="width: 95%; border-radius: 12px;" class="button button-medium button-assertive" ng-click="userLogin()">
+		       LOGIN BACK
+		  </button>
 	   </div>
 
+	   <!--
 	   <div style="text-align : center;margin-top : 10vw;">
 	      <a href="#/register" class="button button-medium button-positive"><i class="icon ion-plus-circled" style="margin-right : 5px;"></i>Create My Account</a>
+	   </div>-->
+	   
+	   <div style="bottom : 0; position : absolute; width : 100%;">
+	         <button style="width : 100%;" class="button button-medium button-positive" ng-click="userLogin()">CREATE MY ACCOUNT</button>
 	   </div>
    </ion-content>
 </ion-view>

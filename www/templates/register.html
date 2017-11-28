@@ -1,47 +1,59 @@
-<ion-view hide-nav-bar="true" style="background-image : url('img/background.jpg');">
+<ion-view hide-nav-bar="true" style="background-image : url('img/bg.jpg'); background-repeat: round;">
    <ion-content>
-       <div style="text-align : center; margin-top : 8vw;">
-	       <img src="img/regUser.png" style="width : 20%"/>
+       <div style="text-align : center; margin-top : 4vw; padding-bottom : 1em;">
+	       <!--<img src="img/icon.png" style="width : 14%"/>-->
+		   <div style="color : white; font-family : Segoe UI; font-size : 20px; font-weight : 600;">Create Your Account</div>
+		   <div style="color : white; font-size : 12px; line-height : 13px; padding-left : 10px; padding-right : 10px; padding-top:10px;">Registration takes less than a minute, just simply enter the following details and get yourself started</div>
 	   </div>
    
-        <div class="list card" style="margin-top : 2vw;">
+        <div class="list card" style="margin-top : 2vw; border-radius: 12px;">
 			  <label class="item item-input item-stacked-label">
 				<span class="input-label">Your Username</span>
 				<input type="text" placeholder="John Doe" ng-model="userReg.name">
 			  </label>
        </div>
 	   
-	   <div class="list card">
+	   <div class="list card" style="border-radius: 12px;">
 	       <label class="item item-input item-stacked-label">
 				<span class="input-label">Your Mobile Number</span>
 				<input type="number" placeholder="+91 9123456780 (No need to give +91)" ng-model="userReg.phone">
 			</label>
 	   </div>
 	   
-	   <div class="list card">
+	   <div class="list card" style="border-radius: 12px;">
 	       <label class="item item-input item-stacked-label">
 				<span class="input-label">Your Vehicle Number</span>
 				<input type="text" placeholder="WB XXX XXXX" ng-model="userReg.number">
 			</label>
 	   </div>
 	   
-	   <div class="list card">
+	   <div class="list card" style="border-radius: 12px;">
+	       <div class="item item-divider" style="text-align : center;">
+                Type of your vehicle
+           </div>
+		   <ion-list>
+				<ion-radio ng-model="userReg.type" ng-value="'2'"><i class="icon ion-android-bicycle" style="margin-right : 5px;"></i>2-wheeler (Bikes, Scooters etc)</ion-radio>
+				<ion-radio ng-model="userReg.type" ng-value="'4'"><i class="icon ion-android-car" style="margin-right : 5px;"></i>4-wheeler (Hatchbacks, Sedans, SUVs etc)</ion-radio>
+		   </ion-list>
+	   </div>   
+	   
+	   <div class="list card" style="border-radius: 12px;">
 	       <label class="item item-input item-stacked-label">
 				<span class="input-label">Your Email ID</span>
 				<input type="email" placeholder="john.doe@email.com" ng-model="userReg.email">
 			</label>
 	   </div>
 	   
-	   <div class="list card">
+	   <div class="list card" style="border-radius: 12px;">
 	       <label class="item item-input item-stacked-label">
 				<span class="input-label">Your Password</span>
 				<input type="password" placeholder="**************************" ng-model="userReg.pwd">
 			</label>
 	   </div>
 	   
-	   <div style="text-align : center;">
-	      <button class="button button-medium button-assertive" ng-click="userRegister();">
-		      <i class="icon ion-paper-airplane" style="margin-right : 5px;"></i>Create ePark Account
+	   <div style="text-align : center;" style="border-radius: 12px; margin-bottom : 2em;">
+	      <button style="width: 95%; border-radius: 12px;" class="button button-medium button-assertive" ng-click="userRegister();">
+		      SUBMIT & SIGN UP
 		  </button>
 	   </div>
    </ion-content>

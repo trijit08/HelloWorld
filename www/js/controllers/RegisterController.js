@@ -6,7 +6,8 @@ app.controller('RegisterController',function($scope, StorageService, UserService
 			email: '',
 			phone: '',
 			number: '',
-			pwd: ''
+			pwd: '',
+			type : ''
 	 };
 
 	 $scope.userRegister = function(){

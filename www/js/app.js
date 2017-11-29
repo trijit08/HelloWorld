@@ -44,6 +44,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage','ja.
     }
   })
   .state('menu.home',{
+    cache : false,
     url: '/home',
     views: {
       'menuContent': {

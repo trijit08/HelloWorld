@@ -7,7 +7,20 @@ app.controller('LoginController',function($scope, StorageService, UserService, $
 	   };
 
 	 $scope.userLogin = function(){
-				 $ionicLoading.show({
+	         if($scope.loginDetails.phone.toString().length != 10 || $scope.loginDetails.phone == "" || $scope.loginDetails.phone == null){
+			     swal(
+					  'Oops...',
+					  'Enter a valid mobile number',
+					  'error'
+					);
+			 }else if($scope.loginDetails.pwd == "" || $scope.loginDetails.pwd == null){
+                 swal(
+					  'Oops...',
+					  'Your password is incorrect',
+					  'error'
+					);			 
+			 }else{
+			     $ionicLoading.show({
 				   template: 'Getting user details...'
 				 });
 					 UserService.doLogin($scope.loginDetails).then(function(response){
@@ -29,10 +42,18 @@ app.controller('LoginController',function($scope, StorageService, UserService, $
 								  $state.go('menu.home');
 								  //$window.location.reload();
 						  }else{
+						          //$ionicLoading.hide();
 								  //alert(response.data);
 						  }
 						},function(errResponse){
+						    $ionicLoading.hide();
 							//alert(JSON.stringify(errResponse));
+							swal(
+								  'Sorry',
+								  'Your entered credentials is incorrect',
+								  'error'
+							 );	
 						});
-	     };
+			 }		 
+	  };
 });

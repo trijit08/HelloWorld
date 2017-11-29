@@ -2,8 +2,8 @@ var app = angular.module('starter');
 
 app.factory('LocationService', function($http){
 
-  //var path = "https://arupepark.herokuapp.com";
-  var path = "http://www.eparkindia.com";
+  var path = "https://arupepark.herokuapp.com";
+  //var path = "http://www.eparkindia.com";
   
   var time = {
     start: 0,

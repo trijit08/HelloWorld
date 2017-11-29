@@ -7,6 +7,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
   $ionicHistory.clearHistory();
   /*socket.io  start*/
     var socket = io.connect("https://arupepark.herokuapp.com");
+	
+	//var socket = io.connect("http://www.eparkindia.com");
     socket.on('device', function(data){
       // alert(JSON.stringify(data));
       // socket.emit('other event', {my : data});

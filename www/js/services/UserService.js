@@ -2,8 +2,8 @@ var app = angular.module('starter');
 
 app.factory('UserService', function($http,$httpParamSerializerJQLike){
  
-  //var url = "https://arupepark.herokuapp.com";
-  var url = "http://www.eparkindia.com";
+  var url = "https://arupepark.herokuapp.com";
+  //var url = "http://www.eparkindia.com";
 
   var user = {};
 

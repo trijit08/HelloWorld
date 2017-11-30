@@ -92,20 +92,11 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage','ja.
       }
     }
   })
-  .state('menu.billPage',{
-    url: '/billPage',
+  .state('menu.faq',{
+    url: '/faq',
     views: {
       'menuContent': {
-        templateUrl: 'templates/billPage.html'
-      }
-    }
-  })
-  .state('menu.feedback',{
-    url: '/feedback',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/feedback.html',
-		controller: 'FeedbackController'
+        templateUrl: 'templates/faq.html'
       }
     }
   })
@@ -123,7 +114,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage','ja.
     views: {
       'menuContent': {
       	templateUrl : 'templates/logout.html',
-	controller : 'LogoutController'
+	    controller : 'LogoutController'
       }
     }
   });

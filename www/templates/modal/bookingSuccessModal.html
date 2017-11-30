@@ -1,46 +1,32 @@
 <ion-modal-view>
   <ion-header-bar class="bar-dark">
-	  <h4 style="margin-left: 3vw; color : white;">Booking Request Confirmed</h4>
+	  <h4 style="margin-left: 3vw; color : white; margin-top : 3px;">
+	      <img src="img/green.png" style="width : 7%;"/>
+		  <div style="margin-left : 10vw; margin-top : -30px;">Booking Started Successfully</div>
+		  <div class="buttons" style="float : right; margin-top : -25px;">
+		       <button class="button button-icon icon ion-close-circled" ng-click=""></button>
+		  </div>
+	  </h4>
   </ion-header-bar>
-  <ion-content style="background-image : url('img/mbg2.png'); background-repeat: round;">
-	<div class="list card successCard">
+  
+  <ion-content style="background-color : #F0F0F0;">
+	<div class="list card">
 		  <div class="item item-divider" style="text-align : center;">
 			  Your Booking Details
 		  </div>
 
 		  <div class="item item-icon-left" style="white-space : normal;">
-			<i class="icon ion-calendar"></i>Booking Date : <span style="color : chocolate;">{{formattedDate}}</span>
+			<i class="icon ion-calendar"></i>Booking Date : <span style="color : chocolate; font-size : 24px; font-weight : 500;">{{}}</span>
 		  </div>
 		  
-		  <div ng-if="showOtherBookingFlag" class="item item-icon-left" style="white-space : normal;">
-			<i class="icon ion-person-add"></i>Vehicle Registration (since this wasn't your vehicle) : <span style="color : chocolate;">{{otherVehicleReg}}</span>
+		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
+			<i class="icon ion-clock"></i>Start Time : <span style="color : green; font-size : 24px; font-weight : 500;">{{}}</span>
 		  </div>
 
 		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
-			<i class="icon ion-clock"></i>Start Time : <span style="color : chocolate;">{{formattedTime}}</span>
+			<i class="icon ion-android-pin"></i>Booking Location : <span style="font-weight : 500;">{{}}</span>
 		  </div>
 
-		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
-			<i class="icon ion-android-watch"></i>Booking Span : <span>{{bookingDetails.hours}} Hour(s)</span>
-		  </div>
-
-		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
-			<i class="icon ion-android-wifi"></i>Sensor Slot ID : <span>P{{bookingDetails.slot}}</span>
-		  </div>
-
-		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
-			<i class="icon ion-android-star"></i>Your OTP : <span style="color : green; font-size : 20px; font-weight : 500;">{{bookingDetails.otp.value}}</span>
-		  </div>
-    </div>
-
-	<div class="card">
-		  <div class="item item-text-wrap" style="text-align : center;">
-			  Your Booking has been confirmed at the Parking Slot. Kindly please reach the slot within 1 Hour. On reaching, tell this OTP of <span style="color : maroon; font-size : 20px; font-weight : 500;">{{bookingDetails.otp.value}}</span> to the Parking Operator to start your Booking at that slot.
-
-		      <div style="text-align : center; margin-top : 10px;">
-		          <button class="button button-medium button-positive" ng-click="gotoHome()">Ok, understood</button>
-		      </div>
-		  </div>
     </div>
   </ion-content>
 </ion-modal-view>

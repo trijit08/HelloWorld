@@ -42,8 +42,13 @@ app.controller('LoginController',function($scope, StorageService, UserService, $
 								  $state.go('menu.home');
 								  //$window.location.reload();
 						  }else{
-						          //$ionicLoading.hide();
+						          $ionicLoading.hide();
 								  //alert(response.data);
+								  swal(
+								  'Sorry',
+								  'Please try again',
+								  'error'
+							 );	
 						  }
 						},function(errResponse){
 						    $ionicLoading.hide();

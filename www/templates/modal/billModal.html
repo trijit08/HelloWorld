@@ -1,0 +1,45 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-dark">
+	  <h4 style="margin-left: 3vw; color : white; margin-top : 3px;">
+	      <img src="img/green.png" style="width : 7%;"/>
+		  <div style="margin-left : 10vw; margin-top : -30px;">Your Parking Bill</div>
+		  <div class="buttons" style="float : right; margin-top : -25px;">
+		       <button class="button button-icon icon ion-close-circled" ng-click=""></button>
+		  </div>
+	  </h4>
+  </ion-header-bar>
+  
+  <ion-content style="background-color : #F0F0F0;">	    
+		<div class="card">
+		    <div class="item item-text-wrap">
+			    <div style="text-align : center; background-color : antiquewhite; height : 7vw;">
+				     <div style="padding-top : 3px; font-size : 13px; font-family : Segoe UI; font-weight : 500;">
+					      Please pay the attendant in cash only
+					 </div>
+				</div>
+				
+				<div style="text-align : center; font-size : 5em; margin-top : 7vw; margin-bottom : 8vw; font-family : Segoe UI; font-weight : 500; color : green;">
+				     <span style="font-size : 38px; color : black; margin-left : -24px;">₹</span>{{}}
+				</div>
+			</div>
+		</div>
+		
+		<div class="list card">
+			  <div class="item item-divider" style="text-align : center;">
+				   Booking Receipt Details
+			  </div>
+
+			  <div class="item item-icon-left" style="white-space : normal;">
+				<i class="icon ion-android-stopwatch"></i>Start Time : <span style="color : chocolate; font-size : 24px; font-weight : 500;">{{}}</span>
+			  </div>
+			  
+			  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
+				<i class="icon ion-android-alarm-clock"></i>End Time : <span style="color : green; font-size : 24px; font-weight : 500;">{{}}</span>
+			  </div>
+
+			  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
+				<i class="icon ion-clipboard"></i>Duration : <span style="font-weight : 500; font-weight : 500;">{{}} hours {{}} mins</span>
+			  </div>
+       </div>
+  </ion-content>
+</ion-modal-view>

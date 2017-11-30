@@ -50,7 +50,7 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 						  type: 'success',
 						  timer : 8000
 					 });
-					 $window.location.reload();
+					 //$window.location.reload();
 				 }, function errorCallback(response){
 					 //alert("Failed");
 					 //alert(JSON.stringify(response));

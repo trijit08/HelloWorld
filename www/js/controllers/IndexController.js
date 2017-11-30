@@ -9,7 +9,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
     //var socket = io.connect("https://arupepark.herokuapp.com");
 	
 	var socket = io.connect("http://www.eparkindia.com");
-    socket.on('new-booking', function(data){
+    socket.on('count-changed', function(data){
       // alert(JSON.stringify(data));
       // socket.emit('other event', {my : data});
       // alert($scope.markers[0]);
@@ -21,14 +21,14 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
       // };
       // $scope.markers[0].setIcon(icon);
       //if(data.value){
-        //$scope.selectedParking.number_of_slot.four = data.value.four;
-        //$scope.selectedParking.number_of_slot.two = data.value.two;
+	alert(JSON.stringify(data));
+       $scope.selectedParking.number_of_slot.four = data.value.four;
+       $scope.selectedParking.number_of_slot.two = data.value.two;
       /*}else{
         $scope.selectedParking.number_of_slot.four = $scope.selectedParking.number_of_slot.four + 1;
       }*/
-	alert(JSON.stringify(data));
       $scope.$apply();
-      console.log(data);
+     // console.log(data);
     });
    /* socket.io end */
 

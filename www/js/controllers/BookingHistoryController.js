@@ -11,7 +11,7 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 		  $http.get(url+ '/booking/user/' + $scope.user._id).success(function(response){
 			$scope.bookingHistory = response;
 			for(var i=0; i<$scope.bookingHistory.length; i++){
-				$scope.bookingHistory[i].duration = parseInt($scope.bookingHistory[i].mins/60) + " hour(s)" + $scope.bookingHistory[i].mins%60 + " min(s)";
+				$scope.bookingHistory[i].duration = parseInt($scope.bookingHistory[i].mins/60) + " hour(s) " + $scope.bookingHistory[i].mins%60 + " min(s)";
 			  $scope.bookingHistory[i].formatDate = $scope.bookingHistory[i].date + " " + $scope.bookingHistory[i].start_time;
 			}
 			$ionicLoading.hide();
@@ -65,7 +65,9 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 				$http.get(url+ '/booking/user/' + $scope.user._id).success(function(response){
 				$scope.bookingHistory = response;
 				for(var i=0; i<$scope.bookingHistory.length; i++){
-				  $scope.bookingHistory[i].formatDate = $scope.formatDate($scope.bookingHistory[i].date.toString());
+				$scope.bookingHistory[i].duration = parseInt($scope.bookingHistory[i].mins/60) + " hour(s) " + $scope.bookingHistory[i].mins%60 + " min(s)";
+			  $scope.bookingHistory[i].formatDate = $scope.bookingHistory[i].date + " " + $scope.bookingHistory[i].start_time;
+				 // $scope.bookingHistory[i].formatDate = $scope.formatDate($scope.bookingHistory[i].date.toString());
 				}
 				$ionicLoading.hide();
 			  })

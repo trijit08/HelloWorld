@@ -21,9 +21,11 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
       // };
       // $scope.markers[0].setIcon(icon);
       //if(data.value){
-	alert(JSON.stringify(data));
-       $scope.selectedParking.number_of_slot.four = data.value.four;
-       $scope.selectedParking.number_of_slot.two = data.value.two;
+	//alert(JSON.stringify(data));
+       if($scope.selectedParking._id === data.value.parking_id){	
+       $scope.selectedParking.number_of_slot.four = data.value.value.four;
+       $scope.selectedParking.number_of_slot.two = data.value.value.two;
+       }
       /*}else{
         $scope.selectedParking.number_of_slot.four = $scope.selectedParking.number_of_slot.four + 1;
       }*/

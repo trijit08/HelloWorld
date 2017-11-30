@@ -21,7 +21,7 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
       // };
       // $scope.markers[0].setIcon(icon);
       //if(data.value){
-	//alert(JSON.stringify(data));
+	alert(data.value.parking_id + ',' + $scope.selectedParking._id);
        if($scope.selectedParking._id === data.value.parking_id){	
        $scope.selectedParking.number_of_slot.four = data.value.value.four;
        $scope.selectedParking.number_of_slot.two = data.value.value.two;

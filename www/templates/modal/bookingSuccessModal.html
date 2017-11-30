@@ -1,32 +1,31 @@
-<ion-modal-view>
-  <ion-header-bar class="bar-dark">
-	  <h4 style="margin-left: 3vw; color : white; margin-top : 3px;">
+<ion-bottom-sheet-view>
+  <ion-header-bar align-title="left" class="bar-dark">
+    <h4 style="margin-left: 3vw; color : white; margin-top : 3px;">
 	      <img src="img/green.png" style="width : 7%;"/>
 		  <div style="margin-left : 10vw; margin-top : -30px;">Booking Started Successfully</div>
 		  <div class="buttons" style="float : right; margin-top : -25px;">
-		       <button class="button button-icon icon ion-close-circled" ng-click=""></button>
+		       <button class="button button-icon icon ion-close-circled" ng-click="closeModal()"></button>
 		  </div>
 	  </h4>
   </ion-header-bar>
-  
-  <ion-content style="background-color : #F0F0F0;">
-	<div class="list card">
-		  <div class="item item-divider" style="text-align : center;">
-			  Your Booking Details
-		  </div>
+  <ion-content>
+    <div class="list card">
+       <div class="item item-divider" style="text-align : center;">
+         Your Booking Details
+       </div>
 
-		  <div class="item item-icon-left" style="white-space : normal;">
-			<i class="icon ion-calendar"></i>Booking Date : <span style="color : chocolate; font-size : 24px; font-weight : 500;">{{}}</span>
-		  </div>
-		  
-		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
-			<i class="icon ion-clock"></i>Start Time : <span style="color : green; font-size : 24px; font-weight : 500;">{{}}</span>
-		  </div>
+       <div class="item item-icon-left" style="white-space : normal;">
+       <i class="icon ion-calendar"></i>Booking Date : <span style="color : chocolate; font-size : 24px; font-weight : 500;">{{bookSuccess.date}}</span>
+       </div>
 
-		  <div class="item item-icon-left item-icon-right" style="white-space : normal;">
-			<i class="icon ion-android-pin"></i>Booking Location : <span style="font-weight : 500;">{{}}</span>
-		  </div>
+       <div class="item item-icon-left item-icon-right" style="white-space : normal;">
+       <i class="icon ion-clock"></i>Start Time : <span style="color : green; font-size : 24px; font-weight : 500;">{{bookSuccess.start_time}}</span>
+       </div>
 
-    </div>
+       <div class="item item-icon-left item-icon-right" style="white-space : normal;">
+       <i class="icon ion-android-pin"></i>Booking Location : <span style="font-weight : 500;">{{bookSuccess.name}}</span>
+       </div>
+
+      </div>
   </ion-content>
-</ion-modal-view>
+</ion-bottom-sheet-view>

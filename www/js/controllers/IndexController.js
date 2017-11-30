@@ -6,10 +6,10 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
   });
   $ionicHistory.clearHistory();
   /*socket.io  start*/
-    var socket = io.connect("https://arupepark.herokuapp.com");
+    //var socket = io.connect("https://arupepark.herokuapp.com");
 	
-	//var socket = io.connect("http://www.eparkindia.com");
-    socket.on('device', function(data){
+	var socket = io.connect("http://www.eparkindia.com");
+    socket.on('new-booking', function(data){
       // alert(JSON.stringify(data));
       // socket.emit('other event', {my : data});
       // alert($scope.markers[0]);
@@ -20,11 +20,11 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
       //   anchor : new google.maps.Point(0,0)
       // };
       // $scope.markers[0].setIcon(icon);
-      if(data.value){
+      //if(data.value){
         $scope.selectedParking.number_of_slot.four = $scope.selectedParking.number_of_slot.four - 1;
-      }else{
+      /*}else{
         $scope.selectedParking.number_of_slot.four = $scope.selectedParking.number_of_slot.four + 1;
-      }
+      }*/
       $scope.$apply();
       console.log(data);
     });

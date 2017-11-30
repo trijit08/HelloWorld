@@ -1,6 +1,13 @@
 var app = angular.module('starter');
 
 app.controller('BookingHistoryController', function($scope, UserService, $http, $window, $ionicLoading){
+		$scope.showFeedbackFlag == 'N';
+		
+		$scope.userFeedback = {
+			bookingID: '',
+			grievance : ''
+	    };
+		
 		$ionicLoading.show({
 			template: 'Getting your booking history'
 		});
@@ -36,6 +43,32 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 			return day + ' ' + monthNames[monthIndex] + ' ' + year;
 		  };
 
+		  
+		  $scope.activateFeedback = function(){
+		      $scope.showFeedbackFlag = 'Y';
+		  };
+		  
+		  $scope.closeFeedback = function(){
+		      $scope.showFeedbackFlag = 'N';
+		  };
+		  
+		  $scope.submitFeedback = function(bookID){
+		     $http({
+					method : 'POST',
+					url : 'http://www.eparkindia.com/feedback/' + bookingID,
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+				}). then(function successCallback(response){
+					 //alert("Updated successfully");
+					 swal({
+						  title: 'Booking Cancelled!',
+						  text: "This booking won't bother you again.",
+						  type: 'success',
+						  timer : 8000
+					 });
+				 }, function errorCallback(response){
+					 sweetAlert("Oops...", "This feedback couldn't be taken. Try again.", "error");
+				});
+		  };
 
 		  $scope.cancelBooking = function(bookingID){
 		      $http({

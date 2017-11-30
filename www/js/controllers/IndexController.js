@@ -21,7 +21,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
       // };
       // $scope.markers[0].setIcon(icon);
       //if(data.value){
-        $scope.selectedParking.number_of_slot.four = $scope.selectedParking.number_of_slot.four - 1;
+        $scope.selectedParking.number_of_slot.four = data.value.four;
+        $scope.selectedParking.number_of_slot.two = data.value.two;
       /*}else{
         $scope.selectedParking.number_of_slot.four = $scope.selectedParking.number_of_slot.four + 1;
       }*/
@@ -174,6 +175,11 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
         $scope.selectedIndex = i;
         //get distance from device location
         $scope.getDistance(new google.maps.LatLng($scope.lat, $scope.lng), i);
+	LocationService.getAvailCount($scope.selectedParking._id).then(function(response){
+		$scope.selectedParking.number_of_slot.two = response.data.two;
+		$scope.selectedParking.number_of_slot.four = response.data.four;
+
+	});
         //$scope.getDistance(new google.maps.LatLng($scope.parkings[i].location.lat, $scope.parkings[i].location.lng), i);
         $scope.parkingInfoModal.show();
       }

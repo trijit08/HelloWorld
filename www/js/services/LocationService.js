@@ -46,13 +46,24 @@ app.factory('LocationService', function($http){
       });
   };
 
+  var getAvailCount = function(locid){
+  	return $http.get(path + '/location/availcount/' + locid)
+	  .success(function(response){
+	  	return response;
+	  })
+	  .error(function(error){
+	  	return error;
+	  });
+  };
+
   var factory = {
     getParkingArr : getParkingArr,
     getParkingId : getParkingId,
     setParkingId : setParkingId,
     getParking : getParking,
     setParking : setParking,
-    getTime : getTime
+    getTime : getTime,
+    getAvailCount : getAvailCount
   };
 
   return factory;

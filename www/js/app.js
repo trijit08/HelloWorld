@@ -21,18 +21,6 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage','ja.
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
     resolve: {
-      auth: function(StorageService, UserService, $q){
-        var d = $q.defer();
-        var user = StorageService.get();
-        //alert(JSON.stringify(user));
-        if(!angular.equals(user, {})){
-            UserService.setUser(user);
-            d.resolve();
-        }else {
-          d.reject('not logged in');
-        }
-        return d.promise;
-      },
       parkings : function(LocationService){
         return LocationService.getParkingArr().then(function(response){
           console.log(response);
@@ -50,6 +38,21 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'ngCordova', 'ngStorage','ja.
       'menuContent': {
         templateUrl: 'templates/map.html',
         controller: 'IndexController',
+	resolve:{
+		
+      auth: function(StorageService, UserService, $q){
+        var d = $q.defer();
+        var user = StorageService.get();
+        //alert(JSON.stringify(user));
+        if(!angular.equals(user, {})){
+            UserService.setUser(user);
+            d.resolve();
+        }else {
+          d.reject('not logged in');
+        }
+        return d.promise;
+      }
+	}
       }
     }
   })

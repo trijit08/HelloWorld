@@ -12,7 +12,7 @@ app.controller('BookingHistoryController', function($scope, UserService, $http, 
 			$scope.bookingHistory = response;
 			for(var i=0; i<$scope.bookingHistory.length; i++){
 				$scope.bookingHistory[i].duration = $scope.bookingHistory[i].mins/60 + ":" + $scope.bookingHistory[i].mins%60 + " hour(s)";
-			  $scope.bookingHistory[i].formatDate = $scope.formatDate($scope.bookingHistory[i].date.toString());
+			  $scope.bookingHistory[i].formatDate = new Date($scope.bookingHistory[i].date).toDateString() + $scope.bookingHistory[i].start_time;
 			}
 			$ionicLoading.hide();
 		  });

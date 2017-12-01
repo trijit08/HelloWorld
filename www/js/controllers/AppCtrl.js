@@ -21,7 +21,7 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http,  $cordovaNetwork, 
 		  $scope.parking = LocationService.getParking();
 
 		  //************************************** INTERNET AND GPS CHECKING START ****************************************
-		  /*
+		  
 		  var isOnline = $cordovaNetwork.isOnline()
 		  if(isOnline){
 				  if (window.cordova) {
@@ -64,7 +64,7 @@ app.controller('AppCtrl',function($scope, $ionicModal, $http,  $cordovaNetwork, 
 		            ionic.Platform.exitApp();
 		        }, 5000);
 		  }
-		  */
+		  
 		  //************************************** INTERNET AND GPS CHECKING END ****************************************
 		  
 		  $scope.currentLocation = {

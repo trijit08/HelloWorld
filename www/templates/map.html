@@ -1,10 +1,11 @@
 <ion-view view-title="Welcome to ePark">
   <ion-content>
 	  <div id="parkSearch">
-	     <div class="card" ng-click="openModal()">
+	     <!--<div class="card" ng-click="openModal()">-->
+		 <div class="card">
 			  <div class="item item-text-wrap">
 				  <div style="color : green; margin-bottom : 4px; text-align : center;">
-                     <i class="icon ion-record" style="color : #32CD32; margin-right : 8px; font-size: 10px;"></i>Looking for parking near
+                     <i class="icon ion-record" style="color : #32CD32; margin-right : 8px; font-size: 10px;"></i>We are now only available at
                   </div>
 				  <div style="text-align : center;">
 				     {{currentLocation.description}}
@@ -14,8 +15,13 @@
       </div>
 	 	  
       <div id="map" data-tap-disabled="false"></div>
-      <div id="info">
+      <!--
+	  <div id="info">
          Tap on any parking icon for details
+      </div> -->
+	  
+	  <div class="bar bar-footer bar-dark" ng-click="openInstructionModal();">
+           <div class="title" style="color : yellow; font-family: Segoe UI; font-size: 11px; white-space : normal; margin : 0px;">Show your QR Code from "My Profile" page to start booking.</div>
       </div>
   </ion-content>
 </ion-view>

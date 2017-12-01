@@ -73,6 +73,21 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
   $scope.closeModal = function(){
     $scope.modal.hide();
   };
+  
+  $scope.openInstructionModal = function(){
+       swal({
+	          title : '',
+			  text: 'Simply reach the parking spot and show your QR code from the "My Profile" page to the parking attendant there to start your parking booking.',
+			  timer: 6000,
+			  onOpen: () => {
+				swal.showLoading()
+			  }
+       }).then((result) => {
+			  if (result.dismiss === 'timer') {
+				 console.log('Auto-close')
+			  }
+       })
+  };
 
   $scope.getLocationList = function(){
     if($scope.search.text.length){
@@ -146,7 +161,8 @@ app.controller('IndexController', function($scope, $state, $cordovaGeolocation, 
   var mapOptions = {
     zoom : 17,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    disableDefaultUI: true
+    disableDefaultUI: true,
+	clickableIcons : false                 //INFO WINDOW RESTRICTED
   };
   var card = document.getElementById("parkSearch");
 

@@ -1,93 +1,75 @@
 var app = angular.module('starter');
 
-app.controller('AppCtrl',function($scope, $ionicModal, $http, $httpParamSerializerJQLike,StorageService, UserService, parkings, LocationService, $ionicPush, $state, $ionicPopup){
-  $scope.user = UserService.getUser();
+app.controller('AppCtrl',function($scope, $ionicModal, $http,  $cordovaNetwork, $cordovaDevice, $httpParamSerializerJQLike,StorageService, UserService, parkings, LocationService, $ionicPush, $state, $ionicPopup){
+		  $scope.user = UserService.getUser();
 
+		  $scope.showAlert = function(heading, token){
+			var alert = $ionicPopup.alert({
+			  title: heading,
+			  template: token
+			});
+		  };
 
+		  $scope.$on('cloud:push:notification', function(event, data){
+			var msg = data.message;
+			$scope.showAlert(msg.title, msg.text);
+		  });
 
-  $scope.showAlert = function(heading, token){
-    var alert = $ionicPopup.alert({
-      title: heading,
-      template: token
-    });
-  };
+		  $scope.reg = {};
 
-  $scope.$on('cloud:push:notification', function(event, data){
-    var msg = data.message;
-    $scope.showAlert(msg.title, msg.text);
-  });
+		  $scope.parkings = parkings.data;
+		  $scope.parking = LocationService.getParking();
 
-  $scope.reg = {};
+		  //************************************** INTERNET AND GPS CHECKING START ****************************************
+		  /*
+		  var isOnline = $cordovaNetwork.isOnline()
+		  if(isOnline){
+				  if (window.cordova) {
+							window.cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled) {
+							if (locationEnabled) {
+								locationEnabled();
+							} else {
+								locationDisabled();
+							}
+						}, function (error) {
+							 console.log("The following error occurred: " + error);
+						});
+				   }
+				  
+				   function locationEnabled() {
+					  console.log("GPS Enabled"); 
+				   };
 
-  $scope.parkings = parkings.data;
-  $scope.parking = LocationService.getParking();
+				   function locationDisabled() {
+						 swal({
+						  title: 'GPS is not enabled',
+						  text: "Without GPS ePark cannot locate you and hence has to exit. Switch on GPS and try again.",
+						  type: 'warning',
+						  timer : 5000
+						 });
+					 
+					 setTimeout(function(){
+						  ionic.Platform.exitApp();
+						}, 5000);
+				   };
+		  }else{
+		        swal({
+				  title: 'No Internet Connection',
+				  text: "Sorry! Without internet ePark has to exit.",
+				  type: 'warning',
+				  timer : 5000
+			    });
+		      
+		        setTimeout(function(){
+		            ionic.Platform.exitApp();
+		        }, 5000);
+		  }
+		  */
+		  //************************************** INTERNET AND GPS CHECKING END ****************************************
+		  
+		  $scope.currentLocation = {
+			latlng : new google.maps.LatLng(22.5726, 88.3639)
+		  };
 
-  $scope.currentLocation = {
-    latlng : new google.maps.LatLng(22.5726, 88.3639)
-  };
-
-
-  /******************************************* USER LOGIN CHECK START ************************************/
-  // if($scope.user.name != "" && $scope.user.password != "" && $scope.user.phone != "" && $scope.user.vehicle_no != ""){
-  //     $state.go('menu.home');
-  // }else{
-  //     $state.go('login');
-  // }
-  /******************************************* USER LOGIN CHECK END ************************************/
-
-  /*$ionicModal.fromTemplateUrl('/templates/modal/loginModal.html',{
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal){
-    $scope.loginModal = modal;
-  });
-
-  $scope.closeLogin = function(){
-    $scope.loginModal.hide();
-  };
-
-  $scope.openLogin = function(){
-    $scope.loginModal.show();
-  };*/
-
-  // $scope.register = function(){
-  //   UserService.doRegister($scope.reg).then(function(response){
-  //     if(response.status === 200){
-  //       $scope.user = response.data;
-  //       $scope.loginModal.hide();
-  //     }else{
-  //       $scope.showAlert('Error', 'Could not add user');
-  //     }
-  //   },function(errResponse){
-  //     $scope.showAlert('Error', 'Could not add user');
-  //   });
-  // };
-  //
-  // $scope.login = function(){
-  //   UserService.doLogin().then(function(response){
-  //     if(response.status === 200){
-  //       $scope.user = response.data;
-  //       $scope.user.isLoggedIn = true;
-  //       StorageService.add($scope.user);
-  //       $scope.loginModal.hide();
-  //
-  //       // register device for push notification
-  //       $ionicPush.register().then(function(t){
-  //         return $ionicPush.saveToken(t);
-  //       }).then(function(t){
-  //         UserService.saveToken(t.token).then(function(response){
-  //           console.log('Token saved: ', t.token);
-  //         }, function(err){
-  //           console.log(err);
-  //         });
-  //       });
-  //     }else{
-  //       console.log(response.data);
-  //       $scope.showAlert('Error', 'Login Failed');
-  //     }
-  //   },function(errResponse){
-  //     console.log(errResponse);
-  //   });
-  // };
-
+          
 });
